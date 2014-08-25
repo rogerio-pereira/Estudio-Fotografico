@@ -19,15 +19,13 @@
  */
 package estudiofotografico.view.janelas;
 
-import estudiofotografico.control.ControladorBancodeDados;
+import estudiofotografico.control.ControladorRelatorios;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.event.ContainerEvent;
 import java.awt.event.ContainerListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.sql.Connection;
-import java.util.HashMap;
 
 /**
  *
@@ -116,6 +114,7 @@ public class RelatorioEquipamento extends javax.swing.JFrame implements KeyListe
         radioSituacaoAtivo = new javax.swing.JRadioButton();
         labelOrdenar = new javax.swing.JLabel();
         radioSituacao = new javax.swing.JRadioButton();
+        progresso = new javax.swing.JProgressBar();
         botaoGerarRelatorio = new javax.swing.JButton();
         botaoCancelar = new javax.swing.JButton();
 
@@ -161,38 +160,43 @@ public class RelatorioEquipamento extends javax.swing.JFrame implements KeyListe
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelMarca)
-                            .addComponent(labelTipo))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(comboTipoEquipamento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(comboMarca, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(progresso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelSituacao)
-                            .addComponent(labelOrdenar))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(radioSituacaoAtivo)
-                                .addGap(1, 1, 1))
-                            .addComponent(radioOrdenaNome, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(11, 11, 11)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(radioSituacaoInativo)
-                            .addComponent(radioOrdenaMarca))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(radioSituacao)
-                            .addComponent(radioSituacaoAmbos))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelMarca)
+                                    .addComponent(labelTipo))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(comboTipoEquipamento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(comboMarca, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(radioOrdenaNenhum))
-                            .addComponent(radioOrdenaValor))))
-                .addGap(12, 12, 12))
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelSituacao)
+                                    .addComponent(labelOrdenar))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(radioSituacaoAtivo)
+                                        .addGap(1, 1, 1))
+                                    .addComponent(radioOrdenaNome, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(11, 11, 11)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(radioSituacaoInativo)
+                                    .addComponent(radioOrdenaMarca))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(radioSituacao)
+                                    .addComponent(radioSituacaoAmbos))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGap(3, 3, 3)
+                                        .addComponent(radioOrdenaNenhum))
+                                    .addComponent(radioOrdenaValor))))
+                        .addGap(12, 12, 12))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,7 +222,10 @@ public class RelatorioEquipamento extends javax.swing.JFrame implements KeyListe
                     .addComponent(radioOrdenaMarca)
                     .addComponent(radioOrdenaValor)
                     .addComponent(labelOrdenar)
-                    .addComponent(radioSituacao)))
+                    .addComponent(radioSituacao))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(progresso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         botaoGerarRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/estudiofotografico/view/img/report_go.png"))); // NOI18N
@@ -246,17 +253,16 @@ public class RelatorioEquipamento extends javax.swing.JFrame implements KeyListe
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addContainerGap()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
                         .addComponent(botaoGerarRelatorio)
                         .addGap(18, 18, 18)
-                        .addComponent(botaoCancelar)
-                        .addGap(92, 92, 92))))
+                        .addComponent(botaoCancelar)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -280,48 +286,43 @@ public class RelatorioEquipamento extends javax.swing.JFrame implements KeyListe
 
     private void botaoGerarRelatorioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_botaoGerarRelatorioActionPerformed
     {//GEN-HEADEREND:event_botaoGerarRelatorioActionPerformed
-		/*try
-		{
-			Connection	conexao		= new ControladorBancodeDados().getConexaoReport();
-			HashMap		parametros	= new HashMap();
-			parametros.put("TipoEquipamento", comboTipoEquipamento.getSelectedItem());
-			parametros.put("MarcaEquipamento", comboMarca.getSelectedItem());
+		progresso.setIndeterminate(true);
+				
+		ControladorRelatorios relatorio	= new ControladorRelatorios();
+		relatorio.parametros.put("TipoEquipamento", comboTipoEquipamento.getSelectedItem());
+		relatorio.parametros.put("MarcaEquipamento", comboMarca.getSelectedItem());
 			if(radioSituacaoAtivo.isSelected())
 			{
-				parametros.put("Situacao0", 1);
-				parametros.put("Situacao1", 1);
-				parametros.put("Situacao2", 1);
-				parametros.put("Situacao3", 1);
-				parametros.put("Situacao4", 1);
-				parametros.put("Situacao5", 1);
+				relatorio.parametros.put("Situacao0", 1);
+				relatorio.parametros.put("Situacao1", 1);
+				relatorio.parametros.put("Situacao2", 1);
+				relatorio.parametros.put("Situacao3", 1);
+				relatorio.parametros.put("Situacao4", 1);
+				relatorio.parametros.put("Situacao5", 1);
 			}
 			else if(radioSituacaoInativo.isSelected())
 			{
-				parametros.put("Situacao0", 1);
-				parametros.put("Situacao1", 1);
-				parametros.put("Situacao2", 2);
-				parametros.put("Situacao3", 3);
-				parametros.put("Situacao4", 4);
-				parametros.put("Situacao5", 5);
+				relatorio.parametros.put("Situacao0", 1);
+				relatorio.parametros.put("Situacao1", 1);
+				relatorio.parametros.put("Situacao2", 2);
+				relatorio.parametros.put("Situacao3", 3);
+				relatorio.parametros.put("Situacao4", 4);
+				relatorio.parametros.put("Situacao5", 5);
 			}
 			else if(radioSituacaoAmbos.isSelected())
 			{
-				parametros.put("Situacao0", 0);
-				parametros.put("Situacao1", 1);
-				parametros.put("Situacao2", 2);
-				parametros.put("Situacao3", 3);
-				parametros.put("Situacao4", 4);
-				parametros.put("Situacao5", 5);
+				relatorio.parametros.put("Situacao0", 0);
+				relatorio.parametros.put("Situacao1", 1);
+				relatorio.parametros.put("Situacao2", 2);
+				relatorio.parametros.put("Situacao3", 3);
+				relatorio.parametros.put("Situacao4", 4);
+				relatorio.parametros.put("Situacao5", 5);
 			}
-			parametros.put("Order", getOrder());
-			JasperPrint	jp			= JasperFillManager.fillReport("relatorios/Equipamentos.jasper", parametros, conexao);
-			JasperViewer	jv			= new JasperViewer(jp);
-			jv.setVisible(true);
-		}
-		catch(Exception e)
-		{
-			System.out.println(e.getMessage());
-		}*/
+		relatorio.parametros.put("Order", getOrder());
+		
+		progresso.setIndeterminate(false);
+		
+		relatorio.GeraRelatório("relatorios/Equipamentos.jasper");
     }//GEN-LAST:event_botaoGerarRelatorioActionPerformed
 
 	private String getOrder()
@@ -389,6 +390,7 @@ public class RelatorioEquipamento extends javax.swing.JFrame implements KeyListe
     private javax.swing.JLabel labelOrdenar;
     private javax.swing.JLabel labelSituacao;
     private javax.swing.JLabel labelTipo;
+    private javax.swing.JProgressBar progresso;
     private javax.swing.JRadioButton radioOrdenaMarca;
     private javax.swing.JRadioButton radioOrdenaNenhum;
     private javax.swing.JRadioButton radioOrdenaNome;

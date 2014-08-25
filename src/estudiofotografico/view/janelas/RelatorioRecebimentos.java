@@ -19,6 +19,7 @@
  */
 package estudiofotografico.view.janelas;
 
+import estudiofotografico.control.ControladorRelatorios;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.event.ContainerEvent;
@@ -93,12 +94,13 @@ public class RelatorioRecebimentos extends javax.swing.JFrame implements KeyList
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         grupoRecebimentos = new javax.swing.ButtonGroup();
         jPanel3 = new javax.swing.JPanel();
         labelCliente = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        textoCliente = new javax.swing.JTextField();
         botaoPesquisarCliente = new javax.swing.JButton();
         labelTipoEvento = new javax.swing.JLabel();
         comboTipoEvento = new javax.swing.JComboBox();
@@ -107,6 +109,7 @@ public class RelatorioRecebimentos extends javax.swing.JFrame implements KeyList
         radioVendasQuitadas = new javax.swing.JRadioButton();
         radioVendasPendentes = new javax.swing.JRadioButton();
         radioNenhumRecebimento = new javax.swing.JRadioButton();
+        progresso = new javax.swing.JProgressBar();
         botaoGerarRelatorio = new javax.swing.JButton();
         botaoCancelar = new javax.swing.JButton();
 
@@ -136,26 +139,29 @@ public class RelatorioRecebimentos extends javax.swing.JFrame implements KeyList
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelTipoEvento)
-                    .addComponent(labelCliente)
-                    .addComponent(labelRecebimentos))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(radioVendasPendentes)
-                    .addComponent(radioVendasQuitadas)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addComponent(radioTodosRecebimentos)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(radioNenhumRecebimento))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                            .addComponent(jTextField1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(botaoPesquisarCliente))
-                        .addComponent(comboTipoEvento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(progresso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelTipoEvento)
+                            .addComponent(labelCliente)
+                            .addComponent(labelRecebimentos))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(radioVendasPendentes)
+                            .addComponent(radioVendasQuitadas)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                    .addComponent(radioTodosRecebimentos)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(radioNenhumRecebimento))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                    .addComponent(textoCliente)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(botaoPesquisarCliente))
+                                .addComponent(comboTipoEvento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -164,7 +170,7 @@ public class RelatorioRecebimentos extends javax.swing.JFrame implements KeyList
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelCliente)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoPesquisarCliente))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -181,16 +187,27 @@ public class RelatorioRecebimentos extends javax.swing.JFrame implements KeyList
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(radioVendasPendentes))
                     .addComponent(radioNenhumRecebimento))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(progresso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         botaoGerarRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/estudiofotografico/view/img/report_go.png"))); // NOI18N
         botaoGerarRelatorio.setText("Gerar Relatório");
+        botaoGerarRelatorio.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                botaoGerarRelatorioActionPerformed(evt);
+            }
+        });
 
         botaoCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/estudiofotografico/view/img/cancel.png"))); // NOI18N
         botaoCancelar.setText("Cancelar");
-        botaoCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        botaoCancelar.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 botaoCancelarMouseClicked(evt);
             }
         });
@@ -200,16 +217,15 @@ public class RelatorioRecebimentos extends javax.swing.JFrame implements KeyList
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(120, 120, 120)
-                        .addComponent(botaoGerarRelatorio)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botaoCancelar)))
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botaoGerarRelatorio)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botaoCancelar)
+                .addGap(95, 95, 95))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,6 +246,40 @@ public class RelatorioRecebimentos extends javax.swing.JFrame implements KeyList
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_botaoCancelarMouseClicked
+
+    private void botaoGerarRelatorioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_botaoGerarRelatorioActionPerformed
+    {//GEN-HEADEREND:event_botaoGerarRelatorioActionPerformed
+		progresso.setIndeterminate(true);
+		
+		ControladorRelatorios relatorio	= new ControladorRelatorios();
+		relatorio.parametros.put("Cliente", textoCliente.getText());
+		
+		if(comboTipoEvento.getSelectedIndex() == -1)
+			relatorio.parametros.put("Evento", "");
+		else
+			relatorio.parametros.put("Evento", comboTipoEvento.getSelectedItem());
+		
+		//quitado
+		if(radioVendasQuitadas.isSelected())
+		{
+			relatorio.parametros.put("Quitado1", true);
+			relatorio.parametros.put("Quitado2", true);
+		}
+		if(radioVendasPendentes.isSelected())
+		{
+			relatorio.parametros.put("Quitado1", false);
+			relatorio.parametros.put("Quitado2", false);
+		}
+		if(radioTodosRecebimentos.isSelected() || radioNenhumRecebimento.isSelected())
+		{
+			relatorio.parametros.put("Quitado1", true);
+			relatorio.parametros.put("Quitado2", false);
+		}
+		
+		progresso.setIndeterminate(false);
+		
+		relatorio.GeraRelatório("relatorios/ContasReceber.jasper");
+    }//GEN-LAST:event_botaoGerarRelatorioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -279,13 +329,14 @@ public class RelatorioRecebimentos extends javax.swing.JFrame implements KeyList
     private javax.swing.JComboBox comboTipoEvento;
     private javax.swing.ButtonGroup grupoRecebimentos;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel labelCliente;
     private javax.swing.JLabel labelRecebimentos;
     private javax.swing.JLabel labelTipoEvento;
+    private javax.swing.JProgressBar progresso;
     private javax.swing.JRadioButton radioNenhumRecebimento;
     private javax.swing.JRadioButton radioTodosRecebimentos;
     private javax.swing.JRadioButton radioVendasPendentes;
     private javax.swing.JRadioButton radioVendasQuitadas;
+    private javax.swing.JTextField textoCliente;
     // End of variables declaration//GEN-END:variables
 }

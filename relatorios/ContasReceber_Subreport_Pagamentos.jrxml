@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ContasReceber_Subreport_Pagamentos" language="groovy" pageWidth="235" pageHeight="802" columnWidth="235" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="3d39b1d8-3e93-4889-9dff-7e0ea0475276">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="CodigoVenda" class="java.lang.Long"/>
+	<queryString>
+		<![CDATA[SELECT
+     pagamentovendas.`pago` AS pagamentovendas_pago,
+     pagamentovendas.`recebido` AS pagamentovendas_recebido,
+     pagamentovendas.`valor` AS pagamentovendas_valor,
+     pagamentovendas.`vencimento` AS pagamentovendas_vencimento
+FROM
+     `vendas` vendas INNER JOIN `vendas_pagamentovendas` vendas_pagamentovendas ON vendas.`codigo` = vendas_pagamentovendas.`Vendas_codigo`
+     INNER JOIN `pagamentovendas` pagamentovendas ON vendas_pagamentovendas.`pagamentos_codigo` = pagamentovendas.`codigo`
+WHERE vendas.`codigo` = $P{CodigoVenda}]]>
+	</queryString>
+	<field name="pagamentovendas_pago" class="java.lang.Boolean"/>
+	<field name="pagamentovendas_recebido" class="java.lang.Double"/>
+	<field name="pagamentovendas_valor" class="java.lang.Double"/>
+	<field name="pagamentovendas_vencimento" class="java.sql.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="235" height="20" forecolor="#CCCCFF" backcolor="#CCCCFF" uuid="09613025-f1ce-4059-802d-6bb6061cfb82">
+					<printWhenExpression><![CDATA[new Boolean(($V{COLUMN_COUNT}.intValue() % 2) == 0)]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField>
+				<reportElement x="0" y="0" width="49" height="20" uuid="05137c5c-4bce-4349-947d-426d780ed97a"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{pagamentovendas_vencimento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="49" y="0" width="42" height="20" uuid="6a3d6d40-9bfa-48fd-b1ce-d72466e8b821"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{pagamentovendas_pago} == true
+    ? "Sim" : "Não"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="91" y="0" width="72" height="20" uuid="92388f83-befb-4c34-9132-63e3c46bb21b"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{pagamentovendas_valor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="163" y="0" width="72" height="20" uuid="15ebc206-b539-4401-a373-3e743303aee4"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{pagamentovendas_recebido}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

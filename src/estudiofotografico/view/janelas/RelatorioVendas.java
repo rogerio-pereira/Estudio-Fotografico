@@ -19,6 +19,7 @@
  */
 package estudiofotografico.view.janelas;
 
+import estudiofotografico.control.ControladorRelatorios;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.event.ContainerEvent;
@@ -93,13 +94,14 @@ public class RelatorioVendas extends javax.swing.JFrame implements KeyListener, 
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         grupoRecebimentos = new javax.swing.ButtonGroup();
         grupoOrdena = new javax.swing.ButtonGroup();
         jPanel3 = new javax.swing.JPanel();
         labelCliente = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        textoCliente = new javax.swing.JTextField();
         labelTipoEvento = new javax.swing.JLabel();
         comboTipoEvento = new javax.swing.JComboBox();
         labelRecebimentos = new javax.swing.JLabel();
@@ -112,6 +114,7 @@ public class RelatorioVendas extends javax.swing.JFrame implements KeyListener, 
         radioSituacao = new javax.swing.JRadioButton();
         radioOrdenaNenhum = new javax.swing.JRadioButton();
         botaoPesquisarCliente = new javax.swing.JButton();
+        progresso = new javax.swing.JProgressBar();
         botaoGerarRelatorio = new javax.swing.JButton();
         botaoCancelar = new javax.swing.JButton();
 
@@ -159,32 +162,35 @@ public class RelatorioVendas extends javax.swing.JFrame implements KeyListener, 
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelTipoEvento)
-                    .addComponent(labelCliente)
-                    .addComponent(labelRecebimentos)
-                    .addComponent(labelOrdena))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(comboTipoEvento, 0, 239, Short.MAX_VALUE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botaoPesquisarCliente))
+                    .addComponent(progresso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(radioRecebimentosPendentes)
-                            .addComponent(radioRecebimentosFinalizados)
+                            .addComponent(labelTipoEvento)
+                            .addComponent(labelCliente)
+                            .addComponent(labelRecebimentos)
+                            .addComponent(labelOrdena))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(comboTipoEvento, 0, 239, Short.MAX_VALUE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(radioRecebimentosTodasVendas)
+                                .addComponent(textoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(radioOrdenaNenhum))
+                                .addComponent(botaoPesquisarCliente))
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(radioOrdenaCliente)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(radioOrdenaTipoEvento)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(radioSituacao)))
-                        .addGap(0, 16, Short.MAX_VALUE)))
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(radioRecebimentosPendentes)
+                                    .addComponent(radioRecebimentosFinalizados)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(radioRecebimentosTodasVendas)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(radioOrdenaNenhum))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(radioOrdenaCliente)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(radioOrdenaTipoEvento)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(radioSituacao)))
+                                .addGap(0, 16, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -194,7 +200,7 @@ public class RelatorioVendas extends javax.swing.JFrame implements KeyListener, 
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(labelCliente)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(textoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(botaoPesquisarCliente))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -217,16 +223,27 @@ public class RelatorioVendas extends javax.swing.JFrame implements KeyListener, 
                         .addComponent(radioOrdenaCliente)
                         .addComponent(radioOrdenaTipoEvento)
                         .addComponent(radioSituacao)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(progresso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         botaoGerarRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/estudiofotografico/view/img/report_go.png"))); // NOI18N
         botaoGerarRelatorio.setText("Gerar Relatório");
+        botaoGerarRelatorio.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                botaoGerarRelatorioActionPerformed(evt);
+            }
+        });
 
         botaoCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/estudiofotografico/view/img/cancel.png"))); // NOI18N
         botaoCancelar.setText("Cancelar");
-        botaoCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        botaoCancelar.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 botaoCancelarMouseClicked(evt);
             }
         });
@@ -236,17 +253,16 @@ public class RelatorioVendas extends javax.swing.JFrame implements KeyListener, 
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(50, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 73, Short.MAX_VALUE)
+                        .addContainerGap()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(81, 81, 81)
                         .addComponent(botaoGerarRelatorio)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botaoCancelar)
-                        .addGap(112, 112, 112))))
+                        .addComponent(botaoCancelar)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -267,6 +283,47 @@ public class RelatorioVendas extends javax.swing.JFrame implements KeyListener, 
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_botaoCancelarMouseClicked
+
+    private void botaoGerarRelatorioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_botaoGerarRelatorioActionPerformed
+    {//GEN-HEADEREND:event_botaoGerarRelatorioActionPerformed
+		progresso.setIndeterminate(true);
+		
+		ControladorRelatorios relatorio	= new ControladorRelatorios();
+		relatorio.parametros.put("Cliente", textoCliente.getText());
+		
+		if(comboTipoEvento.getSelectedIndex() == -1)
+			relatorio.parametros.put("Evento", "");
+		else
+			relatorio.parametros.put("Evento", comboTipoEvento.getSelectedItem());
+		
+		if(radioOrdenaNenhum.isSelected())
+			relatorio.parametros.put("Order", "vendas_codigo");
+		else if(radioOrdenaCliente.isSelected())
+			relatorio.parametros.put("Order", "clientes_nome");
+		else if(radioOrdenaTipoEvento.isSelected())
+			relatorio.parametros.put("Order", "tiposeventos_tipo");
+		
+		//quitado
+		if(radioRecebimentosFinalizados.isSelected())
+		{
+			relatorio.parametros.put("Quitado1", true);
+			relatorio.parametros.put("Quitado2", true);
+		}
+		if(radioRecebimentosPendentes.isSelected())
+		{
+			relatorio.parametros.put("Quitado1", false);
+			relatorio.parametros.put("Quitado2", false);
+		}
+		if(radioRecebimentosTodasVendas.isSelected())
+		{
+			relatorio.parametros.put("Quitado1", true);
+			relatorio.parametros.put("Quitado2", false);
+		}
+		
+		progresso.setIndeterminate(false);
+		
+		relatorio.GeraRelatório("relatorios/Vendas.jasper");
+    }//GEN-LAST:event_botaoGerarRelatorioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -317,11 +374,11 @@ public class RelatorioVendas extends javax.swing.JFrame implements KeyListener, 
     private javax.swing.ButtonGroup grupoOrdena;
     private javax.swing.ButtonGroup grupoRecebimentos;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel labelCliente;
     private javax.swing.JLabel labelOrdena;
     private javax.swing.JLabel labelRecebimentos;
     private javax.swing.JLabel labelTipoEvento;
+    private javax.swing.JProgressBar progresso;
     private javax.swing.JRadioButton radioOrdenaCliente;
     private javax.swing.JRadioButton radioOrdenaNenhum;
     private javax.swing.JRadioButton radioOrdenaTipoEvento;
@@ -329,5 +386,6 @@ public class RelatorioVendas extends javax.swing.JFrame implements KeyListener, 
     private javax.swing.JRadioButton radioRecebimentosPendentes;
     private javax.swing.JRadioButton radioRecebimentosTodasVendas;
     private javax.swing.JRadioButton radioSituacao;
+    private javax.swing.JTextField textoCliente;
     // End of variables declaration//GEN-END:variables
 }

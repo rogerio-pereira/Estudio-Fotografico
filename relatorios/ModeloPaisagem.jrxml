@@ -158,10 +158,20 @@ $F{empresa_estado}.equals( 26 ) ? "TO" : ""]]></textFieldExpression>
 		<band splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="20" splitType="Stretch"/>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="802" height="20" forecolor="#CCFFCC" backcolor="#CCFFCC" uuid="fcbb4470-dc08-4847-9e62-0caf06d4ab97"/>
+			</rectangle>
+		</band>
 	</columnHeader>
 	<detail>
-		<band height="20" splitType="Stretch"/>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="802" height="20" forecolor="#CCCCFF" backcolor="#CCCCFF" uuid="8795a18e-bee6-4b97-b592-93888fe75589">
+					<printWhenExpression><![CDATA[new Boolean(($V{COLUMN_COUNT}.intValue() % 2) == 0)]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+		</band>
 	</detail>
 	<columnFooter>
 		<band splitType="Stretch"/>

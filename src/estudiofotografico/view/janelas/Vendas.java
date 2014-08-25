@@ -73,12 +73,12 @@ public class Vendas extends javax.swing.JFrame implements KeyListener, Container
      * Creates new form cadastroMarcas
      */
     public Vendas() {
-        initComponents();
-        addKeyAndContainerListenerRecursively(this);
-        this.setLocationRelativeTo(null);
+		initComponents();
+		addKeyAndContainerListenerRecursively(this);
+		this.setLocationRelativeTo(null);
 		this.textoCodigo.setText("** NOVO **");
-        labelNomeUsuario.setText(estudio.user.getNome());
-        this.configuraTabelas();
+		labelNomeUsuario.setText(estudio.user.getNome());
+		this.configuraTabelas();
 		//Adiciona Listener nas tabelas
 		this.setListernerTabelas();
     }
@@ -1298,6 +1298,12 @@ private void botaoServicosCadastrarActionPerformed(java.awt.event.ActionEvent ev
 				pagamentos.add(pagamento);
 			}
 			this.controlBD.vendas.setPagamentos(pagamentos);
+			
+			//Definido o quitado
+			if(textoValorReceber.getValue() == 0)
+				this.controlBD.vendas.setQuitado(true);
+			else
+				this.controlBD.vendas.setQuitado(false);
 			
 			//Atualizando banco
 			if(this.textoCodigo.getText().equals("** NOVO **"))

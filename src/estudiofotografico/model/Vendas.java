@@ -86,6 +86,9 @@ public class Vendas
 	
 	@OneToMany(cascade={CascadeType.ALL}, orphanRemoval=true)
 	private Collection<PagamentoVendas> pagamentos;
+	
+	@Column(nullable=false)
+	private Boolean quitado;
 
 
 	public Long getCodigo ()
@@ -243,5 +246,19 @@ public class Vendas
 	{
 		this.pagamentos = pagamentos;
 	}
+
+
+	public Boolean getQuitado ()
+	{
+		return quitado;
+	}
+
+
+	public void setQuitado (Boolean quitado)
+	{
+		this.quitado = quitado;
+	}
+	
+	
 	
 }

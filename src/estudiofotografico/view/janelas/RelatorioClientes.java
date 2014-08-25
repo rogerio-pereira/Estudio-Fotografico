@@ -19,15 +19,13 @@
  */
 package estudiofotografico.view.janelas;
 
-import estudiofotografico.control.ControladorBancodeDados;
+import estudiofotografico.control.ControladorRelatorios;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.event.ContainerEvent;
 import java.awt.event.ContainerListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.sql.Connection;
-import java.util.HashMap;
 
 /**
  *
@@ -114,6 +112,7 @@ public class RelatorioClientes extends javax.swing.JFrame implements KeyListener
         radioOrdenaTipoPessoa = new javax.swing.JRadioButton();
         radioOrdenaNada = new javax.swing.JRadioButton();
         radioOrdenaCidade = new javax.swing.JRadioButton();
+        progresso = new javax.swing.JProgressBar();
         botaoGerarRelatorio = new javax.swing.JButton();
         botaoCancelar = new javax.swing.JButton();
 
@@ -160,32 +159,38 @@ public class RelatorioClientes extends javax.swing.JFrame implements KeyListener
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(labelCidade)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textoCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botaoPesquisarCidade))
+                    .addComponent(progresso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelOrdenacao)
-                            .addComponent(labelTipoPessoa))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(radioPessoaFisica)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(radioOrdenaNome)
-                                .addGap(16, 16, 16)
-                                .addComponent(radioOrdenaNada)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(radioPessoaJuridica)
-                            .addComponent(radioOrdenaTipoPessoa))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(radioOrdenaCidade)
-                            .addComponent(radioAmbasPessoas))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(labelCidade)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(textoCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(botaoPesquisarCidade))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelOrdenacao)
+                                    .addComponent(labelTipoPessoa))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(radioPessoaFisica)
+                                        .addGap(1, 1, 1))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(radioOrdenaNome)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(radioOrdenaNada)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(radioPessoaJuridica)
+                                    .addComponent(radioOrdenaTipoPessoa))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(radioOrdenaCidade)
+                                    .addComponent(radioAmbasPessoas))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,17 +206,16 @@ public class RelatorioClientes extends javax.swing.JFrame implements KeyListener
                     .addComponent(radioPessoaFisica)
                     .addComponent(radioPessoaJuridica)
                     .addComponent(radioAmbasPessoas))
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelOrdenacao)
-                            .addComponent(radioOrdenaNome)
-                            .addComponent(radioOrdenaTipoPessoa)
-                            .addComponent(radioOrdenaCidade))
-                        .addGap(0, 4, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 6, Short.MAX_VALUE)
-                        .addComponent(radioOrdenaNada))))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(radioOrdenaNada)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelOrdenacao)
+                        .addComponent(radioOrdenaNome)
+                        .addComponent(radioOrdenaTipoPessoa)
+                        .addComponent(radioOrdenaCidade)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(progresso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         botaoGerarRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/estudiofotografico/view/img/report_go.png"))); // NOI18N
@@ -244,7 +248,7 @@ public class RelatorioClientes extends javax.swing.JFrame implements KeyListener
                         .addContainerGap()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(112, 112, 112)
+                        .addGap(106, 106, 106)
                         .addComponent(botaoGerarRelatorio)
                         .addGap(18, 18, 18)
                         .addComponent(botaoCancelar)))
@@ -272,35 +276,30 @@ public class RelatorioClientes extends javax.swing.JFrame implements KeyListener
 
     private void botaoGerarRelatorioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_botaoGerarRelatorioActionPerformed
     {//GEN-HEADEREND:event_botaoGerarRelatorioActionPerformed
-		/*try
+		progresso.setIndeterminate(true);
+		
+		ControladorRelatorios relatorio	= new ControladorRelatorios();
+		relatorio.parametros.put("Cidade", textoCidade.getText());
+		if(radioPessoaFisica.isSelected())
 		{
-			Connection	conexao		= new ControladorBancodeDados().getConexaoReport();
-			HashMap		parametros	= new HashMap();
-			parametros.put("Cidade", textoCidade.getText());
-			if(radioPessoaFisica.isSelected())
-			{
-				parametros.put("Pessoa1", true);
-				parametros.put("Pessoa2", true);
-			}
-			else if(radioPessoaJuridica.isSelected())
-			{
-				parametros.put("Pessoa1", false);
-				parametros.put("Pessoa2", false);
-			}
-			else if (radioAmbasPessoas.isSelected())
-			{
-				parametros.put("Pessoa1", true);
-				parametros.put("Pessoa2", false);
-			}
-			parametros.put("Order", getOrder());
-			JasperPrint	jp			= JasperFillManager.fillReport("relatorios/Clientes.jasper", parametros, conexao);
-			JasperViewer	jv			= new JasperViewer(jp);
-			jv.setVisible(true);
+			relatorio.parametros.put("Pessoa1", true);
+			relatorio.parametros.put("Pessoa2", true);
 		}
-		catch(Exception e)
+		else if(radioPessoaJuridica.isSelected())
 		{
-			System.out.println(e.getMessage());
-		}*/
+			relatorio.parametros.put("Pessoa1", false);
+			relatorio.parametros.put("Pessoa2", false);
+		}
+		else if (radioAmbasPessoas.isSelected())
+		{
+			relatorio.parametros.put("Pessoa1", true);
+			relatorio.parametros.put("Pessoa2", false);
+		}
+		relatorio.parametros.put("Order", getOrder());
+		
+		progresso.setIndeterminate(false);
+				
+		relatorio.GeraRelatório("relatorios/Clientes.jasper");
     }//GEN-LAST:event_botaoGerarRelatorioActionPerformed
 
 	
@@ -365,6 +364,7 @@ public class RelatorioClientes extends javax.swing.JFrame implements KeyListener
     private javax.swing.JLabel labelCidade;
     private javax.swing.JLabel labelOrdenacao;
     private javax.swing.JLabel labelTipoPessoa;
+    private javax.swing.JProgressBar progresso;
     private javax.swing.JRadioButton radioAmbasPessoas;
     private javax.swing.JRadioButton radioOrdenaCidade;
     private javax.swing.JRadioButton radioOrdenaNada;

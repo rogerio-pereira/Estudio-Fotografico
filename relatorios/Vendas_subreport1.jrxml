@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Vendas_subreport1" language="groovy" pageWidth="138" pageHeight="802" columnWidth="138" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="7abd7d07-4283-4e2b-a988-ebe6d1e372ec">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="CodigoVenda" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     sum(pagamentovendas.`recebido`) AS pagamentovendas_recebido,
+     sum(pagamentovendas.`valor`) AS pagamentovendas_valor
+FROM
+     `vendas` vendas INNER JOIN `vendas_pagamentovendas` vendas_pagamentovendas ON vendas.`codigo` = vendas_pagamentovendas.`Vendas_codigo`
+     INNER JOIN `pagamentovendas` pagamentovendas ON vendas_pagamentovendas.`pagamentos_codigo` = pagamentovendas.`codigo`
+where vendas.codigo = $P{CodigoVenda}]]>
+	</queryString>
+	<field name="pagamentovendas_recebido" class="java.lang.Double"/>
+	<field name="pagamentovendas_valor" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="71" y="0" width="67" height="20" uuid="9d069254-6fa8-405a-9abd-8121f5f7b11b"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{pagamentovendas_recebido} == $F{pagamentovendas_valor}
+    ? "Quitado" :  "Em Aberto"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="71" height="20" uuid="e739b385-3222-4bff-b263-908e2dfd2748"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{pagamentovendas_valor}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

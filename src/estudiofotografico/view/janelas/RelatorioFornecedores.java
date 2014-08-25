@@ -19,15 +19,13 @@
  */
 package estudiofotografico.view.janelas;
 
-import estudiofotografico.control.ControladorBancodeDados;
+import estudiofotografico.control.ControladorRelatorios;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.event.ContainerEvent;
 import java.awt.event.ContainerListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.sql.Connection;
-import java.util.HashMap;
 
 /**
  *
@@ -108,6 +106,7 @@ public class RelatorioFornecedores extends javax.swing.JFrame implements KeyList
         radioOrdenaNome = new javax.swing.JRadioButton();
         radioOrdenaNada = new javax.swing.JRadioButton();
         radioOrdenaCidade = new javax.swing.JRadioButton();
+        progresso = new javax.swing.JProgressBar();
         botaoGerarRelatorio = new javax.swing.JButton();
         botaoCancelar = new javax.swing.JButton();
 
@@ -138,22 +137,26 @@ public class RelatorioFornecedores extends javax.swing.JFrame implements KeyList
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(progresso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(labelCidade)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(labelCidade)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(textoCidade))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(labelOrdenacao)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(radioOrdenaNome)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(radioOrdenaNada)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(radioOrdenaCidade)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textoCidade))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(labelOrdenacao)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(radioOrdenaNome)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(radioOrdenaNada)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(radioOrdenaCidade)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botaoPesquisarCidade)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(botaoPesquisarCidade)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,6 +172,8 @@ public class RelatorioFornecedores extends javax.swing.JFrame implements KeyList
                         .addComponent(radioOrdenaNome))
                     .addComponent(radioOrdenaNada)
                     .addComponent(radioOrdenaCidade))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(progresso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -202,7 +207,7 @@ public class RelatorioFornecedores extends javax.swing.JFrame implements KeyList
                         .addContainerGap()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
+                        .addGap(38, 38, 38)
                         .addComponent(botaoGerarRelatorio)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botaoCancelar)))
@@ -230,20 +235,15 @@ public class RelatorioFornecedores extends javax.swing.JFrame implements KeyList
 
     private void botaoGerarRelatorioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_botaoGerarRelatorioActionPerformed
     {//GEN-HEADEREND:event_botaoGerarRelatorioActionPerformed
-		/*try
-		{
-			Connection	conexao		= new ControladorBancodeDados().getConexaoReport();
-			HashMap		parametros	= new HashMap();
-			parametros.put("Cidade", textoCidade.getText());
-			parametros.put("Order", getOrder());
-			JasperPrint	jp			= JasperFillManager.fillReport("relatorios/Fornecedores.jasper", parametros, conexao);
-			JasperViewer	jv			= new JasperViewer(jp);
-			jv.setVisible(true);
-		}
-		catch(Exception e)
-		{
-			System.out.println(e.getMessage());
-		}*/
+		progresso.setIndeterminate(true);
+		
+		ControladorRelatorios relatorio	= new ControladorRelatorios();
+		relatorio.parametros.put("Cidade", textoCidade.getText());
+		relatorio.parametros.put("Order", getOrder());
+		
+		progresso.setIndeterminate(false);
+		
+		relatorio.GeraRelatório("relatorios/Fornecedores.jasper");
     }//GEN-LAST:event_botaoGerarRelatorioActionPerformed
 
 	private String getOrder()
@@ -305,6 +305,7 @@ public class RelatorioFornecedores extends javax.swing.JFrame implements KeyList
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel labelCidade;
     private javax.swing.JLabel labelOrdenacao;
+    private javax.swing.JProgressBar progresso;
     private javax.swing.JRadioButton radioOrdenaCidade;
     private javax.swing.JRadioButton radioOrdenaNada;
     private javax.swing.JRadioButton radioOrdenaNome;
