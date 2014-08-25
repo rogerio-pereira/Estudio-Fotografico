@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4c6f12d7-0e7d-4d99-a1d8-276672281a7d">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     empresa.`cnpj` AS empresa_cnpj,
+     empresa.`Endereco` AS empresa_Endereco,
+     empresa.`bairro` AS empresa_bairro,
+     empresa.`cep` AS empresa_cep,
+     empresa.`cidade` AS empresa_cidade,
+     empresa.`complemento` AS empresa_complemento,
+     empresa.`email` AS empresa_email,
+     empresa.`estado` AS empresa_estado,
+     empresa.`fax` AS empresa_fax,
+     empresa.`nome` AS empresa_nome,
+     empresa.`numero` AS empresa_numero,
+     empresa.`site` AS empresa_site,
+     empresa.`telefone` AS empresa_telefone
+FROM
+     `empresa` empresa]]>
+	</queryString>
+	<field name="empresa_cnpj" class="java.lang.String"/>
+	<field name="empresa_Endereco" class="java.lang.String"/>
+	<field name="empresa_bairro" class="java.lang.String"/>
+	<field name="empresa_cep" class="java.lang.String"/>
+	<field name="empresa_cidade" class="java.lang.String"/>
+	<field name="empresa_complemento" class="java.lang.String"/>
+	<field name="empresa_email" class="java.lang.String"/>
+	<field name="empresa_estado" class="java.lang.Integer"/>
+	<field name="empresa_fax" class="java.lang.String"/>
+	<field name="empresa_nome" class="java.lang.String"/>
+	<field name="empresa_numero" class="java.lang.Integer"/>
+	<field name="empresa_site" class="java.lang.String"/>
+	<field name="empresa_telefone" class="java.lang.String"/>
+	<variable name="ContReg" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$V{COLUMN_COUNT}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="94" splitType="Stretch">
+			<textField>
+				<reportElement x="161" y="4" width="394" height="27" uuid="80728e20-f57c-4790-ada0-80df5f075770"/>
+				<textElement textAlignment="Center">
+					<font size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_nome}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="161" y="31" width="53" height="15" uuid="16a7aa49-51bb-47f3-baaa-033c0bd891a5"/>
+				<text><![CDATA[Endereço: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="401" y="31" width="16" height="15" uuid="213387c4-9480-44f4-8bc2-05b94ab6dda9"/>
+				<text><![CDATA[Nº:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="417" y="31" width="32" height="15" uuid="3f64615d-0736-44d2-8c11-453483dc3c28"/>
+				<textFieldExpression><![CDATA[$F{empresa_numero}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="161" y="46" width="26" height="15" uuid="3580ca25-f682-4485-8c0e-22918ed037e0"/>
+				<text><![CDATA[CEP: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="31" width="33" height="15" uuid="ad80c069-b2a8-47fc-9551-dcbe68f7dbbd"/>
+				<text><![CDATA[Bairro:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="488" y="31" width="67" height="15" uuid="62f3a170-66a5-4f73-ae16-ce795084941d"/>
+				<textFieldExpression><![CDATA[$F{empresa_bairro}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="344" y="46" width="39" height="15" uuid="6bb7fbc3-64e2-4c61-a34f-9f1f869c95d8"/>
+				<text><![CDATA[Cidade:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="383" y="46" width="105" height="15" uuid="02299274-c687-4369-8fb7-5a471ddb34e7"/>
+				<textFieldExpression><![CDATA[$F{empresa_cidade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="488" y="46" width="17" height="15" uuid="5d76d5d6-8321-45a0-bc3e-7d7c1716891c"/>
+				<textFieldExpression><![CDATA[$F{empresa_estado}.equals( 0 )	? "AC" :
+$F{empresa_estado}.equals( 1 )	? "AL" :
+$F{empresa_estado}.equals( 2 )	? "AP" :
+$F{empresa_estado}.equals( 3 )	? "AM" :
+$F{empresa_estado}.equals( 4 )	? "BA" :
+$F{empresa_estado}.equals( 5 )	? "CE" :
+$F{empresa_estado}.equals( 6 )	? "DF" :
+$F{empresa_estado}.equals( 7 )	? "ES" :
+$F{empresa_estado}.equals( 8 )	? "GO" :
+$F{empresa_estado}.equals( 9 )	? "MA" :
+$F{empresa_estado}.equals( 10 ) ? "MT" :
+$F{empresa_estado}.equals( 11 ) ? "MS" :
+$F{empresa_estado}.equals( 12 ) ? "MG" :
+$F{empresa_estado}.equals( 13 ) ? "PR" :
+$F{empresa_estado}.equals( 14 ) ? "PB" :
+$F{empresa_estado}.equals( 15 ) ? "PA" :
+$F{empresa_estado}.equals( 16 ) ? "PE" :
+$F{empresa_estado}.equals( 17 ) ? "PI" :
+$F{empresa_estado}.equals( 18 ) ? "RJ" :
+$F{empresa_estado}.equals( 19 ) ? "RN" :
+$F{empresa_estado}.equals( 20 ) ? "RS" :
+$F{empresa_estado}.equals( 21 ) ? "RO" :
+$F{empresa_estado}.equals( 22 ) ? "RR" :
+$F{empresa_estado}.equals( 23 ) ? "SC" :
+$F{empresa_estado}.equals( 24 ) ? "SE" :
+$F{empresa_estado}.equals( 25 ) ? "SP" :
+$F{empresa_estado}.equals( 26 ) ? "TO" : ""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="161" y="61" width="33" height="15" uuid="168bc1a7-fb9f-4eb1-948b-66b5c8b584c4"/>
+				<text><![CDATA[CNPJ: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="215" y="61" width="102" height="15" uuid="d5b633ca-6145-4bf3-aefe-f768e2ecaf80"/>
+				<textFieldExpression><![CDATA[$F{empresa_cnpj}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="344" y="61" width="39" height="15" uuid="4d1b8977-b771-49bc-a9ab-bb455193a90a"/>
+				<text><![CDATA[Tel:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="383" y="61" width="105" height="15" uuid="3ba7bc74-b940-4a62-9378-20e52fa329a7"/>
+				<textFieldExpression><![CDATA[$F{empresa_telefone}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="215" y="46" width="63" height="15" uuid="d74c4dbf-eec5-41a5-a210-58bb2d4d7f5c"/>
+				<textFieldExpression><![CDATA[$F{empresa_cep}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="161" y="76" width="36" height="15" uuid="fa728d05-04ce-4ed9-9b0a-dcd45514e6fa"/>
+				<text><![CDATA[E-Mail: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="215" y="76" width="129" height="15" uuid="8fc02078-5500-4b70-94e5-faadfe5feb6a"/>
+				<textFieldExpression><![CDATA[$F{empresa_email}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="344" y="76" width="39" height="15" uuid="32e468a6-3edd-47ac-8eaf-460d2e935c49"/>
+				<text><![CDATA[Site:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="383" y="76" width="172" height="15" uuid="69709178-68ed-4cc7-be6b-a422e26b7838"/>
+				<textFieldExpression><![CDATA[$F{empresa_site}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="6" y="12" width="150" height="75" uuid="869da6d3-cb65-4ec6-ab5a-98b11866be9b"/>
+				<imageExpression><![CDATA["..\\img\\logotipoMenor.jpg"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="214" y="31" width="187" height="15" uuid="c9cf938d-b656-47ab-87ef-e5d001b42cf1"/>
+				<textFieldExpression><![CDATA[$F{empresa_Endereco}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="20"/>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch"/>
+	</detail>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="435" y="0" width="80" height="20" uuid="25b86465-ac38-4883-8f8d-79a1a7405a1b"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="515" y="0" width="40" height="20" uuid="6c7c56e1-753b-40d3-983a-b39d5f6fa122"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="20">
+			<textField>
+				<reportElement x="435" y="0" width="80" height="20" uuid="c62000fa-2a77-4d79-af8b-bb4d249748b8"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="515" y="0" width="40" height="20" uuid="06367de5-4384-47f3-94c9-b181e794d407"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="30" height="20" uuid="4663b1da-140e-4f69-8f86-65662f55c32d"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Total:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="30" y="0" width="100" height="20" uuid="1c9d70b9-9c6d-4749-b9cc-872dc070cf4b"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{ContReg}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="0" width="305" height="20" uuid="77c5ca5f-30c5-4ad7-8266-589172c5f934"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_nome}]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
+</jasperReport>

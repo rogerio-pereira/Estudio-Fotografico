@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Clientes_Subreport_Email" language="groovy" pageWidth="158" pageHeight="802" columnWidth="158" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="fc428042-db18-4642-bc26-39fbce9999f1">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="CodFornecedor" class="java.lang.Long"/>
+	<queryString>
+		<![CDATA[SELECT
+     emailsfornecedores.`email` AS emailsfornecedores_email
+FROM
+     `fornecedores` fornecedores INNER JOIN `fornecedores_emailsfornecedores` fornecedores_emailsfornecedores ON fornecedores.`codigo` = fornecedores_emailsfornecedores.`Fornecedores_codigo`
+     INNER JOIN `emailsfornecedores` emailsfornecedores ON fornecedores_emailsfornecedores.`emails_codigo` = emailsfornecedores.`codigo`
+WHERE
+     fornecedores.`codigo` = $P{CodFornecedor}]]>
+	</queryString>
+	<field name="emailsfornecedores_email" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="158" height="20" forecolor="#CCCCFF" backcolor="#CCCCFF" uuid="328329c5-a342-4031-aa1d-d3c002c656a1">
+					<printWhenExpression><![CDATA[new Boolean(($V{COLUMN_COUNT}.intValue() % 2) == 0)]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField>
+				<reportElement x="0" y="0" width="158" height="20" uuid="7e12893e-42be-48a6-a888-10689bb62963"/>
+				<textFieldExpression><![CDATA[$F{emailsfornecedores_email}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
