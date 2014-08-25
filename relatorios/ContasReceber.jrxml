@@ -12,6 +12,8 @@
 	<parameter name="Evento" class="java.lang.String">
 		<defaultValueExpression><![CDATA[new String("")]]></defaultValueExpression>
 	</parameter>
+	<parameter name="Quitado1" class="java.lang.Boolean"/>
+	<parameter name="Quitado2" class="java.lang.Boolean"/>
 	<queryString>
 		<![CDATA[SELECT
      empresa.`cnpj` AS empresa_cnpj,
@@ -38,6 +40,7 @@ FROM
 WHERE
       clientes.`nome` LIKE '%$P!{Cliente}%'
 	AND tiposeventos.`tipo` LIKE '%$P!{Evento}%'
+	and (vendas.quitado = $P{Quitado1} or vendas.quitado = $P{Quitado2})
 ORDER BY
      vendas_codigo ASC]]>
 	</queryString>
