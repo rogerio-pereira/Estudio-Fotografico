@@ -4,7 +4,7 @@
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["D:\\Documentos\\Documentos\\NetBeansProjects\\EstudioFotografico\\relatorios\\"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["\\"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="Cidade" class="java.lang.String"/>
 	<parameter name="Order" class="java.lang.String"/>
@@ -165,7 +165,7 @@ $F{empresa_estado}.equals( 26 ) ? "TO" : ""]]></textFieldExpression>
 			</textField>
 			<image>
 				<reportElement x="6" y="12" width="150" height="75" uuid="869da6d3-cb65-4ec6-ab5a-98b11866be9b"/>
-				<imageExpression><![CDATA["..\\img\\logotipoMenor.jpg"]]></imageExpression>
+				<imageExpression><![CDATA["..\\img\\logotipoMenor.png"]]></imageExpression>
 			</image>
 			<textField>
 				<reportElement x="214" y="31" width="187" height="15" uuid="c9cf938d-b656-47ab-87ef-e5d001b42cf1"/>

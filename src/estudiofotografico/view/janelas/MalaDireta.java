@@ -133,17 +133,21 @@ public class MalaDireta extends javax.swing.JFrame implements KeyListener, Conta
         botaoLimpar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Agenda");
+        setTitle("Mala Direta");
         setBounds(new java.awt.Rectangle(250, 230, 0, 0));
 
         painelPesquisa.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(95, 133, 169), null), "Listar Endereços de E-mails", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
 
+        checkClienteFisico.setSelected(true);
         checkClienteFisico.setText("Cliente (Pessoa Fisica)");
 
+        checkClienteJuridico.setSelected(true);
         checkClienteJuridico.setText("Cliente (Pessoa Juridica)");
 
+        checkFornecedores.setSelected(true);
         checkFornecedores.setText("Fornecedores");
 
+        checkLocaisEvento.setSelected(true);
         checkLocaisEvento.setText("Locais de Eventos");
 
         botaoGerar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/estudiofotografico/view/img/email_go.png"))); // NOI18N
@@ -291,10 +295,10 @@ public class MalaDireta extends javax.swing.JFrame implements KeyListener, Conta
 
     private void botaoLimparActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_botaoLimparActionPerformed
     {//GEN-HEADEREND:event_botaoLimparActionPerformed
-		this.checkClienteFisico.setSelected(false);
-		this.checkClienteJuridico.setSelected(false);
-		this.checkFornecedores.setSelected(false);
-		this.checkLocaisEvento.setSelected(false);
+		this.checkClienteFisico.setSelected(true);
+		this.checkClienteJuridico.setSelected(true);
+		this.checkFornecedores.setSelected(true);
+		this.checkLocaisEvento.setSelected(true);
 		
 		this.textoEmails.setText("");
     }//GEN-LAST:event_botaoLimparActionPerformed

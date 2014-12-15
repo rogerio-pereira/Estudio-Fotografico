@@ -237,6 +237,13 @@ public class RelatorioClientes extends javax.swing.JFrame implements KeyListener
                 botaoCancelarMouseClicked(evt);
             }
         });
+        botaoCancelar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                botaoCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -301,6 +308,11 @@ public class RelatorioClientes extends javax.swing.JFrame implements KeyListener
 				
 		relatorio.GeraRelatório("relatorios/Clientes.jasper");
     }//GEN-LAST:event_botaoGerarRelatorioActionPerformed
+
+    private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_botaoCancelarActionPerformed
+    {//GEN-HEADEREND:event_botaoCancelarActionPerformed
+		this.dispose();
+    }//GEN-LAST:event_botaoCancelarActionPerformed
 
 	
 	private String getOrder()

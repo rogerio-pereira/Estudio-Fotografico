@@ -25,6 +25,7 @@ import java.awt.event.ContainerEvent;
 import java.awt.event.ContainerListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -98,7 +99,8 @@ public class Agenda extends javax.swing.JFrame implements KeyListener, Container
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         grupoPessoa = new javax.swing.ButtonGroup();
         painelPesquisa = new javax.swing.JPanel();
@@ -129,24 +131,30 @@ public class Agenda extends javax.swing.JFrame implements KeyListener, Container
 
         grupoPessoa.add(radioPessoaFisica);
         radioPessoaFisica.setText("Pessoa Fisica");
-        radioPessoaFisica.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        radioPessoaFisica.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 radioPessoaFisicaActionPerformed(evt);
             }
         });
 
         grupoPessoa.add(radioPessoaJuridica);
         radioPessoaJuridica.setText("Pessoa Juridica");
-        radioPessoaJuridica.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        radioPessoaJuridica.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 radioPessoaJuridicaActionPerformed(evt);
             }
         });
 
         grupoPessoa.add(radioNenhumaPessoa);
         radioNenhumaPessoa.setSelected(true);
-        radioNenhumaPessoa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        radioNenhumaPessoa.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 radioNenhumaPessoaActionPerformed(evt);
             }
         });
@@ -155,9 +163,11 @@ public class Agenda extends javax.swing.JFrame implements KeyListener, Container
 
         labelCPF.setText("CPF");
 
-        try {
+        try
+        {
             textoCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-        } catch (java.text.ParseException ex) {
+        } catch (java.text.ParseException ex)
+        {
             ex.printStackTrace();
         }
 
@@ -188,9 +198,11 @@ public class Agenda extends javax.swing.JFrame implements KeyListener, Container
 
         labelCNPJ.setText("CNPJ");
 
-        try {
+        try
+        {
             textoCNPJ.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
-        } catch (java.text.ParseException ex) {
+        } catch (java.text.ParseException ex)
+        {
             ex.printStackTrace();
         }
 
@@ -261,26 +273,52 @@ public class Agenda extends javax.swing.JFrame implements KeyListener, Container
 
         botaoPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/estudiofotografico/view/img/magnifier.png"))); // NOI18N
         botaoPesquisar.setText("Pesquisar");
+        botaoPesquisar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                botaoPesquisarActionPerformed(evt);
+            }
+        });
 
         botaoLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/estudiofotografico/view/img/delete.png"))); // NOI18N
         botaoLimpar.setText("Limpar");
+        botaoLimpar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                botaoLimparActionPerformed(evt);
+            }
+        });
 
         botaoCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/estudiofotografico/view/img/cancel.png"))); // NOI18N
         botaoCancelar.setText("Cancelar");
+        botaoCancelar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                botaoCancelarActionPerformed(evt);
+            }
+        });
 
         tabelaContatos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+            new Object [][]
+            {
 
             },
-            new String [] {
+            new String []
+            {
                 "Nome", "CPF/CNPJ", "Telefone 1", "Telefone 2", "E-Mail"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
+        )
+        {
+            boolean[] canEdit = new boolean []
+            {
                 false, false, false, false, false
             };
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
+            public boolean isCellEditable(int rowIndex, int columnIndex)
+            {
                 return canEdit [columnIndex];
             }
         });
@@ -363,6 +401,28 @@ public class Agenda extends javax.swing.JFrame implements KeyListener, Container
             labelCNPJ.setEnabled(true);
             textoCNPJ.setEnabled(true);
     }//GEN-LAST:event_radioPessoaJuridicaActionPerformed
+
+    private void botaoPesquisarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_botaoPesquisarActionPerformed
+    {//GEN-HEADEREND:event_botaoPesquisarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoPesquisarActionPerformed
+
+    private void botaoLimparActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_botaoLimparActionPerformed
+    {//GEN-HEADEREND:event_botaoLimparActionPerformed
+		textoNome.setText("");
+		radioNenhumaPessoa.doClick();
+		textoCPF.setText("");
+		textoCNPJ.setText("");
+		
+		DefaultTableModel modelo = (DefaultTableModel) tabelaContatos.getModel();
+		while(tabelaContatos.getRowCount() > 0)
+			modelo.removeRow(0);
+    }//GEN-LAST:event_botaoLimparActionPerformed
+
+    private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_botaoCancelarActionPerformed
+    {//GEN-HEADEREND:event_botaoCancelarActionPerformed
+		this.dispose();
+    }//GEN-LAST:event_botaoCancelarActionPerformed
 
     /**
      * @param args the command line arguments

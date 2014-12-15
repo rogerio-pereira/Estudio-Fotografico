@@ -81,8 +81,8 @@ public class ControladorEmpresa
 	 */
 	public void criaLogotipo(String imagem, JFrame janela)
 	{
-		String logotipo			= new String("img/logotipo.jpg");
-		String logotipoMenor	= new String("img/logotipoMenor.jpg");
+		String logotipo			= new String("img/logotipo.png");
+		String logotipoMenor	= new String("img/logotipoMenor.png");
 
 		this.criaDiretorio(janela);
 		this.copiaArquivo(imagem,			logotipo,	logotipoMenor,	janela);
@@ -184,7 +184,7 @@ public class ControladorEmpresa
 			g.drawImage	(imagem.getScaledInstance(novaImgLargura.intValue(), novaImgAltura.intValue(), 10000), 0, 0, null);  
 			g.dispose();  
 			
-			ImageIO.write(novaImagem, "jpg", new File(caminhoImg));  
+			ImageIO.write(novaImagem, "png", new File(caminhoImg));  
 		}
 		catch (IOException e)
 		{

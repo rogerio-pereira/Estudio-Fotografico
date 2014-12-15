@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="84bbad64-8ed6-4a8c-8474-ee01e4c77a4f">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="de" class="java.lang.String"/>
+	<parameter name="importanciaValor" class="java.lang.String"/>
+	<parameter name="importanciaExtenso" class="java.lang.String"/>
+	<parameter name="referente" class="java.lang.String"/>
+	<parameter name="observacoes" class="java.lang.String"/>
+	<parameter name="municipio" class="java.lang.String"/>
+	<parameter name="data" class="java.lang.String"/>
+	<parameter name="assinatura" class="java.lang.String"/>
+	<parameter name="complemento" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="31" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="31" uuid="4d5ebeae-b75d-4df5-9797-4d8e2e6557cc"/>
+				<textElement textAlignment="Center">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Static text]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="408">
+			<staticText>
+				<reportElement x="0" y="1" width="76" height="20" uuid="b2a866df-8605-470e-ab15-56c6f231fa6b"/>
+				<text><![CDATA[Recebemos de:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="90" y="1" width="465" height="40" uuid="f17b87b2-5b8c-4d71-8b97-00328a6aff71"/>
+				<textFieldExpression><![CDATA[$P{de}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="41" width="90" height="20" uuid="76f40e46-6235-410f-9c3c-3e445cdcd189"/>
+				<text><![CDATA[A importancia de:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="90" y="41" width="465" height="40" uuid="72f55993-82a5-4917-8a15-6876c802dd9d"/>
+				<textFieldExpression><![CDATA[$P{importanciaValor}+" ("+$P{importanciaExtenso}+")"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="81" width="90" height="20" uuid="c1ac134b-5cb7-4a69-9a8e-1c88f57fb117"/>
+				<text><![CDATA[Referente à:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="90" y="81" width="465" height="40" uuid="1093bf9f-d825-45e6-8c28-7eac3b00c52b"/>
+				<textFieldExpression><![CDATA[$P{referente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="121" width="465" height="40" uuid="594f2dce-581a-4da6-9976-36a71397e40f"/>
+				<textFieldExpression><![CDATA[$P{observacoes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="221" width="555" height="20" uuid="e4306de3-2404-43eb-b214-5e1c39657b09"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$P{municipio}+", "+$P{data}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="201" width="555" height="20" uuid="9fb04dd4-1832-4e28-8c83-96f7b2016914"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$P{assinatura}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="281" width="555" height="40" uuid="afc7470c-3424-4c3c-a9b1-e2263bf15126"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{complemento}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="324" y="200" width="231" height="1" uuid="9de9805c-b7f8-4bc8-94d6-dd3388730038"/>
+			</line>
+			<line>
+				<reportElement x="0" y="321" width="555" height="1" uuid="f9d4a7a7-fb3f-4f74-8025-69baa0b83749"/>
+			</line>
+			<line>
+				<reportElement x="140" y="333" width="255" height="1" uuid="8824c642-1909-40f0-88bb-8881d8e2dc2c"/>
+			</line>
+		</band>
+	</detail>
+</jasperReport>

@@ -21,6 +21,7 @@ package estudiofotografico.view.janelas;
 
 import estudiofotografico.control.ControladorClientes;
 import estudiofotografico.control.ControladorEmpresa;
+import estudiofotografico.control.ControladorRelatorios;
 import estudiofotografico.control.util.Extenso;
 import estudiofotografico.model.Clientes;
 import estudiofotografico.model.Empresa;
@@ -186,13 +187,15 @@ public class Recibos extends javax.swing.JFrame implements KeyListener, Containe
         labelReferente.setText("Referente à:");
 
         textoReferente.setColumns(20);
-        textoReferente.setRows(5);
+        textoReferente.setLineWrap(true);
+        textoReferente.setWrapStyleWord(true);
         painelReferente.setViewportView(textoReferente);
 
         labelObservacao.setText("Observações:");
 
         textoObs.setColumns(20);
-        textoObs.setRows(5);
+        textoObs.setLineWrap(true);
+        textoObs.setWrapStyleWord(true);
         painelObs.setViewportView(textoObs);
 
         labelMunicipio.setText("Municipio");
@@ -227,23 +230,21 @@ public class Recibos extends javax.swing.JFrame implements KeyListener, Containe
                     .addComponent(labelReferente)
                     .addComponent(labelObservacao))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(textoComplemento, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
-                    .addComponent(painelReferente, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(textoData, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(textoMunicipio)
-                                .addComponent(textoNomeAssinatura)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(textoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(botaoPesquisarCliente))
-                                .addComponent(painelObs))
-                            .addComponent(textoValor, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(painelReferente, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(textoData, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textoMunicipio)
+                            .addComponent(textoNomeAssinatura)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(textoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(botaoPesquisarCliente))
+                            .addComponent(painelObs))
+                        .addComponent(textoValor, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textoComplemento))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -259,7 +260,7 @@ public class Recibos extends javax.swing.JFrame implements KeyListener, Containe
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelReferente)
-                    .addComponent(painelReferente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(painelReferente, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(painelObs, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -280,7 +281,7 @@ public class Recibos extends javax.swing.JFrame implements KeyListener, Containe
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelComplemento)
                     .addComponent(textoComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         botaoGerarRecibo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/estudiofotografico/view/img/money_add.png"))); // NOI18N
@@ -308,17 +309,14 @@ public class Recibos extends javax.swing.JFrame implements KeyListener, Containe
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 106, Short.MAX_VALUE)
-                        .addComponent(botaoGerarRecibo)
-                        .addGap(18, 18, 18)
-                        .addComponent(botaoLimparRecibo)
-                        .addGap(133, 133, 133))))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botaoGerarRecibo)
+                .addGap(18, 18, 18)
+                .addComponent(botaoLimparRecibo)
+                .addGap(94, 94, 94))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -366,18 +364,18 @@ public class Recibos extends javax.swing.JFrame implements KeyListener, Containe
 		else if(data[1].equals("12"))
 			data[1] = "Dezembro";
 		
+		ControladorRelatorios relatorio	= new ControladorRelatorios();
+		relatorio.parametros.put("de", textoCliente.getText().toUpperCase());
+		relatorio.parametros.put("importanciaValor", textoValor.getText());
+		relatorio.parametros.put("importanciaExtenso", this.extenso.toString().toUpperCase());
+		relatorio.parametros.put("referente", textoReferente.getText().toUpperCase());
+		relatorio.parametros.put("observacoes", textoObs.getText().toUpperCase());
+		relatorio.parametros.put("municipio", textoMunicipio.getText().toUpperCase());
+		relatorio.parametros.put("data", data[0]+" de "+data[1]+" de "+data[2]);
+		relatorio.parametros.put("assinatura", textoNomeAssinatura.getText());
+		relatorio.parametros.put("complemento", textoComplemento.getText().toUpperCase());
 		
-		System.out.println("Recebemos de: "+textoCliente.getText());
-		System.out.println("A importancia de: "+this.extenso.toString());
-		System.out.println("Referente à: "+this.textoReferente.getText());
-		System.out.println(this.textoObs.getText());
-		System.out.println("");
-		System.out.println	(
-								this.textoMunicipio.getText()+", "+
-								data[0]+" de "+data[1]+" de "+data[2]
-							);
-		System.out.println(this.textoNomeAssinatura.getText());
-		System.out.println(this.textoComplemento.getText());
+		relatorio.GeraRelatório("relatorios/Recibo.jasper");
     }//GEN-LAST:event_botaoGerarReciboActionPerformed
 
     private void botaoLimparReciboActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_botaoLimparReciboActionPerformed

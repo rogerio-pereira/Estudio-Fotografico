@@ -252,7 +252,9 @@ public class CadastroServicos extends javax.swing.JFrame implements KeyListener,
         labelObs.setText("Observações");
 
         textoObs.setColumns(20);
+        textoObs.setLineWrap(true);
         textoObs.setRows(5);
+        textoObs.setWrapStyleWord(true);
         textoObs.addKeyListener(new java.awt.event.KeyAdapter()
         {
             public void keyTyped(java.awt.event.KeyEvent evt)

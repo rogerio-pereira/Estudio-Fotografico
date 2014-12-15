@@ -65,7 +65,7 @@ FROM
 			</textField>
 			<image>
 				<reportElement x="122" y="11" width="150" height="75" uuid="12795352-b338-4eb3-808a-bc33ecf44f3a"/>
-				<imageExpression><![CDATA["..\\img\\logotipoMenor.jpg"]]></imageExpression>
+				<imageExpression><![CDATA["..\\img\\logotipoMenor.png"]]></imageExpression>
 			</image>
 			<textField>
 				<reportElement x="604" y="45" width="17" height="15" uuid="63620481-78a0-4859-932b-445cab77b4c2"/>

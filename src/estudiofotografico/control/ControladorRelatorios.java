@@ -7,10 +7,13 @@
 package estudiofotografico.control;
 
 
+import java.awt.Image;
 import java.sql.Connection;
 import java.util.HashMap;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
@@ -25,7 +28,7 @@ public class ControladorRelatorios
 {
 	public ControladorRelatorios ()
 	{
-		this.conexao		= new ControladorBancodeDados().getConexaoReport();
+		this.conexao	= new ControladorBancodeDados().getConexaoReport();
 		this.parametros	= new HashMap();
 	}
 	
@@ -34,16 +37,23 @@ public class ControladorRelatorios
 	{
 		try
 		{
-			JasperPrint	jp			= JasperFillManager.fillReport(relatorio, this.parametros, this.conexao);
-			JasperViewer	jv			= new JasperViewer(jp);
+			JasperPrint jp;
+			
+			if(!relatorio.equals("relatorios/Recibo.jasper"))
+				jp		= JasperFillManager.fillReport(relatorio, this.parametros, this.conexao);
+			else
+				jp		= JasperFillManager.fillReport(relatorio, this.parametros, new JREmptyDataSource());
+			JasperViewer	jv		= new JasperViewer(jp, false);
 			jv.setVisible(true);
 		}
 		catch(Exception e)
 		{
-			JOptionPane.showMessageDialog(null, "Erro ao gerar Relatorio", "Erro ao gerar o relatorio!", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Erro ao gerar Relatorio\n"+e.getCause()+"\n"+e.getMessage(), "Erro ao gerar o relatorio!", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 	
+	//formatação, backup, limpeza interna, comrpa de hd, processador, placa mae, memoria, placa de video, fonte, gabinete, gravador dvd, monitor, mouse, teclado, limpeza interna, configuração de roteador, troca de memoria
+	
 	public Connection	conexao;
-	public HashMap	parametros;
+	public HashMap		parametros;
 }

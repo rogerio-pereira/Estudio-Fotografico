@@ -197,6 +197,7 @@ public class CadastroFornecedores extends javax.swing.JFrame implements KeyListe
 			this.comboEstado.setEnabled(habilita);
 			this.textoCEP.setEnabled(habilita);
 			this.textoObs.setEnabled(habilita);
+			this.textoSite.setEnabled(habilita);
 			
 			this.tabelaTelefone.setEnabled(habilita);
 			this.tabelaEmail.setEnabled(habilita);
@@ -289,6 +290,7 @@ public class CadastroFornecedores extends javax.swing.JFrame implements KeyListe
 		this.textoCidade.setText("");
 		this.comboEstado.setSelectedIndex(-1);
 		this.textoCEP.setText("");
+		this.textoSite.setText("");
 		this.textoObs.setText("");
 		
 		this.apagaTabela(tabelaEmail);
@@ -345,6 +347,7 @@ public class CadastroFornecedores extends javax.swing.JFrame implements KeyListe
 		this.comboEstado.setSelectedIndex(this.fornecedores.getEstado());
 		this.textoCEP.setText(this.fornecedores.getCep());
 		this.textoObs.setText(this.fornecedores.getObservacao());
+		this.textoSite.setText(this.fornecedores.getSite());
 		
 		//Telefones
 		this.telefones = this.fornecedores.getTelefones();
@@ -484,6 +487,8 @@ public class CadastroFornecedores extends javax.swing.JFrame implements KeyListe
         labelObs = new javax.swing.JLabel();
         painelObs = new javax.swing.JScrollPane();
         textoObs = new javax.swing.JTextArea();
+        labelSite = new javax.swing.JLabel();
+        textoSite = new javax.swing.JTextField();
 
         comboTipoTelefone.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Comercial", "Celular", "Fax", "Recado ", "Residencial", "Outro" }));
 
@@ -1133,6 +1138,7 @@ public class CadastroFornecedores extends javax.swing.JFrame implements KeyListe
         textoObs.setColumns(20);
         textoObs.setLineWrap(true);
         textoObs.setRows(5);
+        textoObs.setWrapStyleWord(true);
         textoObs.addKeyListener(new java.awt.event.KeyAdapter()
         {
             public void keyTyped(java.awt.event.KeyEvent evt)
@@ -1142,6 +1148,16 @@ public class CadastroFornecedores extends javax.swing.JFrame implements KeyListe
         });
         painelObs.setViewportView(textoObs);
 
+        labelSite.setText("Site");
+
+        textoSite.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                textoSiteKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout PainelObsLayout = new javax.swing.GroupLayout(PainelObs);
         PainelObs.setLayout(PainelObsLayout);
         PainelObsLayout.setHorizontalGroup(
@@ -1150,16 +1166,25 @@ public class CadastroFornecedores extends javax.swing.JFrame implements KeyListe
                 .addContainerGap()
                 .addGroup(PainelObsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(painelObs, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
-                    .addComponent(labelObs))
+                    .addGroup(PainelObsLayout.createSequentialGroup()
+                        .addComponent(labelObs)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(PainelObsLayout.createSequentialGroup()
+                        .addComponent(labelSite)
+                        .addGap(9, 9, 9)
+                        .addComponent(textoSite, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         PainelObsLayout.setVerticalGroup(
             PainelObsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PainelObsLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGroup(PainelObsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelSite)
+                    .addComponent(textoSite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(labelObs)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(painelObs, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
+                .addComponent(painelObs, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1366,6 +1391,7 @@ private void textoObsKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_te
 			controlBD.fornecedores.setEstado(this.comboEstado.getSelectedIndex());
 			controlBD.fornecedores.setCep(this.textoCEP.getText());
 			controlBD.fornecedores.setObservacao(this.textoObs.getText());
+			controlBD.fornecedores.setSite(textoSite.getText());
 
 			//Definindo os telefones
 			if(tabelaTelefone.isEditing())
@@ -1468,6 +1494,13 @@ private void textoObsKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_te
 		this.limpaTela();
 		habilitaCampos(true);
     }//GEN-LAST:event_botaoExcluirActionPerformed
+
+    private void textoSiteKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_textoSiteKeyTyped
+    {//GEN-HEADEREND:event_textoSiteKeyTyped
+        int t = textoSite.getText().length();
+        if(t == 100)
+        evt.setKeyChar((char) KeyEvent.VK_CLEAR);
+    }//GEN-LAST:event_textoSiteKeyTyped
 
     
     /*
@@ -1604,6 +1637,7 @@ private void textoObsKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_te
     private javax.swing.JLabel labelRGResponsavel;
     private javax.swing.JLabel labelResponsavel;
     private javax.swing.JLabel labelSexo;
+    private javax.swing.JLabel labelSite;
     private javax.swing.JLabel labelTelefone;
     private javax.swing.JPanel painelClientes;
     private javax.swing.JPanel painelEndereco;
@@ -1637,6 +1671,7 @@ private void textoObsKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_te
     private javax.swing.JTextField textoRG;
     private javax.swing.JTextField textoRGResponsavel;
     private javax.swing.JTextField textoResponsavel;
+    private javax.swing.JTextField textoSite;
     private javax.swing.JFormattedTextField textoTelefone;
     // End of variables declaration//GEN-END:variables
 	private ControladorBancodeDados				controlBD;

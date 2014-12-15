@@ -223,7 +223,6 @@ public class RelatorioVendas extends javax.swing.JFrame implements KeyListener, 
                         .addComponent(radioOrdenaCliente)
                         .addComponent(radioOrdenaTipoEvento)
                         .addComponent(radioSituacao)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(progresso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -245,6 +244,13 @@ public class RelatorioVendas extends javax.swing.JFrame implements KeyListener, 
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 botaoCancelarMouseClicked(evt);
+            }
+        });
+        botaoCancelar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                botaoCancelarActionPerformed(evt);
             }
         });
 
@@ -324,6 +330,11 @@ public class RelatorioVendas extends javax.swing.JFrame implements KeyListener, 
 		
 		relatorio.GeraRelatório("relatorios/Vendas.jasper");
     }//GEN-LAST:event_botaoGerarRelatorioActionPerformed
+
+    private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_botaoCancelarActionPerformed
+    {//GEN-HEADEREND:event_botaoCancelarActionPerformed
+		this.dispose();
+    }//GEN-LAST:event_botaoCancelarActionPerformed
 
     /**
      * @param args the command line arguments

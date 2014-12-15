@@ -222,7 +222,7 @@ public class Principal extends javax.swing.JFrame implements KeyListener, Contai
         });
 
         botaoAgenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/estudiofotografico/view/img/calendar-day_grande.png"))); // NOI18N
-        botaoAgenda.setText("Agenda");
+        botaoAgenda.setText("Agenda Telefonica");
         botaoAgenda.setAlignmentX(5.0F);
         botaoAgenda.setAlignmentY(5.0F);
         botaoAgenda.setAutoscrolls(true);
@@ -491,7 +491,7 @@ public class Principal extends javax.swing.JFrame implements KeyListener, Contai
         menuContatos.setText("Contatos");
 
         itemContatosAgenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/estudiofotografico/view/img/calendar-day.png"))); // NOI18N
-        itemContatosAgenda.setText("Agenda");
+        itemContatosAgenda.setText("Agenda Telefonica");
         itemContatosAgenda.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -790,7 +790,7 @@ public class Principal extends javax.swing.JFrame implements KeyListener, Contai
 	private void setLogotipo()
 	{
 		this.labelLogotipo.setHorizontalAlignment(SwingConstants.CENTER);  
-		this.labelLogotipo.setIcon(new ImageIcon("img\\logotipo.jpg"));
+		this.labelLogotipo.setIcon(new ImageIcon("img\\logotipo.png"));
 	}
 	
 	/*

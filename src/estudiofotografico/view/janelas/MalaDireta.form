@@ -7,7 +7,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
-    <Property name="title" type="java.lang.String" value="Agenda"/>
+    <Property name="title" type="java.lang.String" value="Mala Direta"/>
     <Property name="bounds" type="java.awt.Rectangle" editor="org.netbeans.beaninfo.editors.RectangleEditor">
       <Rectangle value="[250, 230, 0, 0]"/>
     </Property>
@@ -118,21 +118,25 @@
       <SubComponents>
         <Component class="javax.swing.JCheckBox" name="checkClienteFisico">
           <Properties>
+            <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Cliente (Pessoa Fisica)"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="checkClienteJuridico">
           <Properties>
+            <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Cliente (Pessoa Juridica)"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="checkFornecedores">
           <Properties>
+            <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Fornecedores"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="checkLocaisEvento">
           <Properties>
+            <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Locais de Eventos"/>
           </Properties>
         </Component>

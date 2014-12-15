@@ -110,6 +110,9 @@ public class Fornecedores
 
     @Column(length=999999999)
     private String observacao;
+	
+	@Column(length = 100)
+	private String site;
     
     @Column(nullable=false, columnDefinition="bit default 1", insertable=false)
     private Boolean ativo;
@@ -377,5 +380,18 @@ public class Fornecedores
     {
         this.telefones = telefones;
     }
+
+
+	public String getSite ()
+	{
+		return site;
+	}
+
+
+	public void setSite (String site)
+	{
+		this.site = site;
+	}
     
+	
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4c6f12d7-0e7d-4d99-a1d8-276672281a7d">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="4c6f12d7-0e7d-4d99-a1d8-276672281a7d">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -199,7 +199,7 @@ $F{empresa_estado}.equals( 26 ) ? "TO" : ""]]></textFieldExpression>
 			</textField>
 			<image>
 				<reportElement x="6" y="12" width="150" height="75" uuid="869da6d3-cb65-4ec6-ab5a-98b11866be9b"/>
-				<imageExpression><![CDATA["..\\img\\logotipoMenor.jpg"]]></imageExpression>
+				<imageExpression><![CDATA["..\\img\\logotipoMenor.png"]]></imageExpression>
 			</image>
 			<textField>
 				<reportElement x="214" y="31" width="187" height="15" uuid="c9cf938d-b656-47ab-87ef-e5d001b42cf1"/>
@@ -261,7 +261,7 @@ $F{empresa_estado}.equals( 26 ) ? "TO" : ""]]></textFieldExpression>
 				<reportElement x="291" y="0" width="68" height="20" uuid="8cb6b7de-eabc-4898-ac7d-f336e3b904f8"/>
 				<textFieldExpression><![CDATA[new java.text.DecimalFormat("R$ #,##0.00").format(Double.valueOf($F{equipamentos_preco}))]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="359" y="0" width="53" height="20" uuid="cbba1ce0-7463-4213-a7e7-e06da2f328e1"/>
 				<textFieldExpression><![CDATA[$F{equipamentos_dataCompra}]]></textFieldExpression>
 			</textField>

@@ -185,7 +185,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/estudiofotografico/view/img/calendar-day.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Agenda"/>
+                <Property name="text" type="java.lang.String" value="Agenda Telefonica"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemContatosAgendaActionPerformed"/>
@@ -690,7 +690,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/estudiofotografico/view/img/calendar-day_grande.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Agenda"/>
+            <Property name="text" type="java.lang.String" value="Agenda Telefonica"/>
             <Property name="alignmentX" type="float" value="5.0"/>
             <Property name="alignmentY" type="float" value="5.0"/>
             <Property name="autoscrolls" type="boolean" value="true"/>

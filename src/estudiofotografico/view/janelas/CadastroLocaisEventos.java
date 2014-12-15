@@ -788,6 +788,7 @@ public class CadastroLocaisEventos extends javax.swing.JFrame implements KeyList
         textoObservacoes.setColumns(20);
         textoObservacoes.setLineWrap(true);
         textoObservacoes.setRows(5);
+        textoObservacoes.setWrapStyleWord(true);
         textoObservacoes.addKeyListener(new java.awt.event.KeyAdapter()
         {
             public void keyTyped(java.awt.event.KeyEvent evt)

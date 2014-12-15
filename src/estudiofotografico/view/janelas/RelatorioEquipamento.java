@@ -247,6 +247,13 @@ public class RelatorioEquipamento extends javax.swing.JFrame implements KeyListe
                 botaoCancelarMouseClicked(evt);
             }
         });
+        botaoCancelar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                botaoCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -289,8 +296,14 @@ public class RelatorioEquipamento extends javax.swing.JFrame implements KeyListe
 		progresso.setIndeterminate(true);
 				
 		ControladorRelatorios relatorio	= new ControladorRelatorios();
-		relatorio.parametros.put("TipoEquipamento", comboTipoEquipamento.getSelectedItem());
-		relatorio.parametros.put("MarcaEquipamento", comboMarca.getSelectedItem());
+		if(comboTipoEquipamento.getSelectedIndex() != -1)
+			relatorio.parametros.put("TipoEquipamento", comboTipoEquipamento.getSelectedItem());
+		else
+			relatorio.parametros.put("TipoEquipamento", "");
+		if(comboMarca.getSelectedIndex() != -1)
+			relatorio.parametros.put("MarcaEquipamento", comboMarca.getSelectedItem());
+		else
+			relatorio.parametros.put("MarcaEquipamento", "");
 			if(radioSituacaoAtivo.isSelected())
 			{
 				relatorio.parametros.put("Situacao0", 1);
@@ -324,6 +337,11 @@ public class RelatorioEquipamento extends javax.swing.JFrame implements KeyListe
 		
 		relatorio.GeraRelatório("relatorios/Equipamentos.jasper");
     }//GEN-LAST:event_botaoGerarRelatorioActionPerformed
+
+    private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_botaoCancelarActionPerformed
+    {//GEN-HEADEREND:event_botaoCancelarActionPerformed
+		this.dispose();
+    }//GEN-LAST:event_botaoCancelarActionPerformed
 
 	private String getOrder()
 	{
