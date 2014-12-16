@@ -21,6 +21,7 @@ package estudiofotografico.view.erros;
 
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Toolkit;
 import java.awt.event.ContainerEvent;
 import java.awt.event.ContainerListener;
 import java.awt.event.KeyEvent;
@@ -92,7 +93,8 @@ public class ErroAbrirCalculadora extends javax.swing.JDialog implements KeyList
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         labelErro = new javax.swing.JLabel();
         botaoOK = new javax.swing.JButton();
@@ -100,13 +102,16 @@ public class ErroAbrirCalculadora extends javax.swing.JDialog implements KeyList
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Erro Calculadora");
         setBounds(new java.awt.Rectangle(250, 230, 0, 0));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/estudiofotografico/view/img/camera-photo-5.png")));
 
         labelErro.setText("Erro ao Abrir Calculadora");
 
         botaoOK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/estudiofotografico/view/img/accept.png"))); // NOI18N
         botaoOK.setText("OK");
-        botaoOK.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        botaoOK.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 botaoOKMouseClicked(evt);
             }
         });

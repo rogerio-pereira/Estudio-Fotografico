@@ -19,13 +19,16 @@
  */
 package estudiofotografico.view.janelas;
 
+import estudiofotografico.control.ControladorEquipamentos;
 import estudiofotografico.control.ControladorRelatorios;
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Toolkit;
 import java.awt.event.ContainerEvent;
 import java.awt.event.ContainerListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.List;
 
 /**
  *
@@ -42,6 +45,9 @@ public class RelatorioEquipamento extends javax.swing.JFrame implements KeyListe
         this.setLocationRelativeTo(null);
         radioOrdenaNenhum.setVisible(false);
         radioOrdenaNenhum.doClick();
+		
+		this.getTipos();
+		this.getMarcas();
     }
     
     //BOTAO ESC E ENTER
@@ -121,6 +127,7 @@ public class RelatorioEquipamento extends javax.swing.JFrame implements KeyListe
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Relatório de Equipamentos");
         setBounds(new java.awt.Rectangle(250, 230, 0, 0));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/estudiofotografico/view/img/camera-photo-5.png")));
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(95, 133, 169), null), "Filtros", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
@@ -291,6 +298,26 @@ public class RelatorioEquipamento extends javax.swing.JFrame implements KeyListe
         dispose();
     }//GEN-LAST:event_botaoCancelarMouseClicked
 
+	private void getTipos()
+	{
+		List<String> tipos = new ControladorEquipamentos().getTipoEquipamento();
+		for(String tipo : tipos)
+		{
+			comboTipoEquipamento.addItem(tipo);
+		}
+		comboTipoEquipamento.setSelectedIndex(-1);
+	}
+	
+	private void getMarcas()
+	{
+		List<String> marcas = new ControladorEquipamentos().getMarcaEquipamento();
+		for(String marca : marcas)
+		{
+			comboMarca.addItem(marca);
+		}
+		comboMarca.setSelectedIndex(-1);
+	}
+	
     private void botaoGerarRelatorioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_botaoGerarRelatorioActionPerformed
     {//GEN-HEADEREND:event_botaoGerarRelatorioActionPerformed
 		progresso.setIndeterminate(true);
@@ -300,6 +327,7 @@ public class RelatorioEquipamento extends javax.swing.JFrame implements KeyListe
 			relatorio.parametros.put("TipoEquipamento", comboTipoEquipamento.getSelectedItem());
 		else
 			relatorio.parametros.put("TipoEquipamento", "");
+		
 		if(comboMarca.getSelectedIndex() != -1)
 			relatorio.parametros.put("MarcaEquipamento", comboMarca.getSelectedItem());
 		else

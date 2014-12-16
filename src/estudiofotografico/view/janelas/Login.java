@@ -25,6 +25,7 @@ import estudiofotografico.model.Usuario;
 import estudiofotografico.EstudioFotografico;
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Toolkit;
 import java.awt.event.ContainerEvent;
 import java.awt.event.ContainerListener;
 import java.awt.event.KeyEvent;
@@ -73,6 +74,7 @@ public class Login extends javax.swing.JFrame implements KeyListener, ContainerL
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/estudiofotografico/view/img/camera-photo-5.png")));
 
         labelUsuario.setText("Usuario");
 

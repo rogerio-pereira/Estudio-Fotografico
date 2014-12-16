@@ -23,13 +23,12 @@ package estudiofotografico.view.janelas;
 
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Toolkit;
 import java.awt.event.ContainerEvent;
 import java.awt.event.ContainerListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
-import java.net.URL;
-import javax.swing.JEditorPane;
 
 /**
  *
@@ -82,6 +81,7 @@ public class Licenca extends javax.swing.JFrame implements KeyListener, Containe
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Licença");
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/estudiofotografico/view/img/camera-photo-5.png")));
 
         jLabel1.setText("Este software está protegido pela Licensa de Software Livre GPL3.");
 

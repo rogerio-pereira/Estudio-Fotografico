@@ -145,6 +145,37 @@ public class ControladorEventos
 	}
 	
 	/*
+	 * Método getFornecedorAgenda
+	 * Obtem lista de locais de Eventos
+	 */
+	public List<LocaisEventos> getLocaisEventoAgenda(String nome)
+	{
+		String filtro = new String();
+		try
+		{
+			if(nome != null)
+				filtro += " AND nome LIKE '%"+nome+"%'";
+			
+			this.factory = Persistence.createEntityManagerFactory	(	
+																		"estudioFotografico", 
+																		new ControladorBancodeDados().getConfigBD()
+																	);
+			this.manager = this.factory.createEntityManager();
+			
+			String qr = "Select l FROM LocaisEventos l WHERE 1=1 " + filtro + " ORDER BY l.codigo";
+
+			//Obtendo o Codigo do item
+			Query query = this.manager.createQuery(qr);
+			this.locais = query.getResultList();
+			return this.locais;
+		}
+		catch (Exception e)
+		{
+			return null;
+		}
+	}
+	
+	/*
 	 * Método getLocaisEventoBusca
 	 * Retorna os Locais de Evento de acordo com o filtro
 	 */
@@ -201,6 +232,25 @@ public class ControladorEventos
             this.erroBuscar.setVisible(true);
             return null;
         }
+	}
+	
+	/*
+     * Método getTipoEventos
+     * Retorna o nome dos tipos de equipamentos
+     */
+    public List<String> getTiposEventos() 
+	{
+		List<String>	tipoString;
+		this.factory = Persistence.createEntityManagerFactory	(	
+																	"estudioFotografico", 
+																	new ControladorBancodeDados().getConfigBD()
+																);
+        this.manager = factory.createEntityManager();
+		
+		Query query = manager.createNamedQuery("TiposEventos.findAll");
+		tiposString = query.getResultList();
+		
+		return tiposString;
 	}
 	
 	private EntityManagerFactory			factory;

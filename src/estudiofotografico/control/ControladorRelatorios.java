@@ -7,11 +7,9 @@
 package estudiofotografico.control;
 
 
-import java.awt.Image;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import java.util.HashMap;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -44,6 +42,7 @@ public class ControladorRelatorios
 			else
 				jp		= JasperFillManager.fillReport(relatorio, this.parametros, new JREmptyDataSource());
 			JasperViewer	jv		= new JasperViewer(jp, false);
+			jv.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/estudiofotografico/view/img/camera-photo-5.png")));
 			jv.setVisible(true);
 		}
 		catch(Exception e)

@@ -112,6 +112,8 @@ public class ControladorBancodeDados
         }
         catch (Exception e)
         {
+			System.out.println(e.getCause());
+			System.out.println(e.getMessage());
             erroInserir = new ErroInserir(janela, true);
             erroInserir.setVisible(true);
             return false;

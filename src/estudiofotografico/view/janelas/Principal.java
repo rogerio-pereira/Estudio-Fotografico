@@ -25,6 +25,7 @@ import static estudiofotografico.view.erros.ErroEmpresaNaoCadastrada.RET_OK;
 
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Toolkit;
 import java.awt.event.ContainerEvent;
 import java.awt.event.ContainerListener;
 import java.awt.event.KeyEvent;
@@ -44,6 +45,7 @@ public class Principal extends javax.swing.JFrame implements KeyListener, Contai
      */
     public Principal() {
         initComponents();
+		//new Icone().setIcon(this);
         addKeyAndContainerListenerRecursively(this);
         this.setLocationRelativeTo(null);
 		//Define o logotipo
@@ -127,7 +129,7 @@ public class Principal extends javax.swing.JFrame implements KeyListener, Contai
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Estudio Fotografico");
-        setIconImages(null);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/estudiofotografico/view/img/camera-photo-5.png")));
         setMinimumSize(new java.awt.Dimension(800, 600));
 
         painelBotoes.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.lightGray, java.awt.Color.lightGray));
@@ -579,6 +581,13 @@ public class Principal extends javax.swing.JFrame implements KeyListener, Contai
 
         itemRelatoriosContasReceber.setIcon(new javax.swing.ImageIcon(getClass().getResource("/estudiofotografico/view/img/money_add.png"))); // NOI18N
         itemRelatoriosContasReceber.setText("À Receber");
+        itemRelatoriosContasReceber.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                itemRelatoriosContasReceberActionPerformed(evt);
+            }
+        });
         menuRelatoriosContas.add(itemRelatoriosContasReceber);
 
         menuRelatorios.add(menuRelatoriosContas);
@@ -1061,6 +1070,11 @@ private void LogoffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
 		lookandfeel.LookAndFeelWindow lookAndFeelWindow = new LookAndFeelWindow();
 		lookAndFeelWindow.setVisible(true);
     }//GEN-LAST:event_itemSistemaSobreAparenciaActionPerformed
+
+    private void itemRelatoriosContasReceberActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_itemRelatoriosContasReceberActionPerformed
+    {//GEN-HEADEREND:event_itemRelatoriosContasReceberActionPerformed
+		new RelatorioRecebimentos().setVisible(true);
+    }//GEN-LAST:event_itemRelatoriosContasReceberActionPerformed
 
     /**
      * @param args the command line arguments

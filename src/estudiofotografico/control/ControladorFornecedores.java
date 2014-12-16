@@ -102,6 +102,43 @@ public class ControladorFornecedores
 		}
 	}
 	
+	/*
+	 * Método getFornecedorAgenda
+	 * Obtem lista de fornecedores
+	 */
+	public List<Fornecedores> getFornecedorAgenda(String nome, String pessoa, String cpf, String cnpj)
+	{
+		String filtro = new String();
+		try
+		{
+			if(nome != null)
+				filtro += " AND nome LIKE '%"+nome+"%'";
+			if(pessoa != null)
+				filtro += " AND pessoa ="+pessoa;
+			if(cpf != null)
+				filtro += " AND cpf = '" + cpf +"'";
+			if(cnpj != null)
+				filtro += " AND cnpj = " + cnpj + "'";
+			
+			this.factory = Persistence.createEntityManagerFactory	(	
+																		"estudioFotografico", 
+																		new ControladorBancodeDados().getConfigBD()
+																	);
+			this.manager = this.factory.createEntityManager();
+			
+			String qr = "Select f FROM Fornecedores f WHERE 1=1 " + filtro + " ORDER BY f.codigo";
+
+			//Obtendo o Codigo do item
+			Query query = this.manager.createQuery(qr);
+			this.fornecedores = query.getResultList();
+			return this.fornecedores;
+		}
+		catch (Exception e)
+		{
+			return null;
+		}
+	}
+	
 	private EntityManagerFactory			factory;
     private EntityManager					manager;
 	

@@ -27,6 +27,7 @@ import estudiofotografico.model.Clientes;
 import estudiofotografico.model.Empresa;
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Toolkit;
 import java.awt.event.ContainerEvent;
 import java.awt.event.ContainerListener;
 import java.awt.event.KeyEvent;
@@ -165,6 +166,7 @@ public class Recibos extends javax.swing.JFrame implements KeyListener, Containe
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gerador de Recibo");
         setBounds(new java.awt.Rectangle(250, 230, 0, 0));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/estudiofotografico/view/img/camera-photo-5.png")));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(95, 133, 169), null), "Dados do Recibo"));
 
@@ -380,7 +382,12 @@ public class Recibos extends javax.swing.JFrame implements KeyListener, Containe
 
     private void botaoLimparReciboActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_botaoLimparReciboActionPerformed
     {//GEN-HEADEREND:event_botaoLimparReciboActionPerformed
-        // TODO add your handling code here:
+		textoCliente.setText("");
+		textoValor.setText("");
+		textoReferente.setText("");
+		textoObs.setText("");
+		this.setData();
+		textoObs.setText("");
     }//GEN-LAST:event_botaoLimparReciboActionPerformed
 
     private void botaoPesquisarClienteActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_botaoPesquisarClienteActionPerformed

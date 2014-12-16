@@ -26,6 +26,7 @@ import estudiofotografico.view.erros.ErroRestaurarBackup;
 import estudiofotografico.view.erros.SucessoRestaurarBackup;
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Toolkit;
 import java.awt.event.ContainerEvent;
 import java.awt.event.ContainerListener;
 import java.awt.event.KeyEvent;
@@ -70,6 +71,7 @@ public class RestaurarBackup extends javax.swing.JFrame implements KeyListener, 
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Restaurar Backup");
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/estudiofotografico/view/img/camera-photo-5.png")));
 
         labelDiretorio.setText("Diretório");
 

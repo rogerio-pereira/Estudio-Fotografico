@@ -102,6 +102,43 @@ public class ControladorClientes
 		}
 	}
 	
+	/*
+	 * Método getClientesAgenda
+	 * Obtem lista de clientes
+	 */
+	public List<Clientes> getClientesAgenda(String nome, String pessoa, String cpf, String cnpj)
+	{
+		String filtro = new String();
+		try
+		{
+			if(nome != null)
+				filtro += " AND nome LIKE '%"+nome+"%'";
+			if(pessoa != null)
+				filtro += " AND pessoa ="+pessoa;
+			if(cpf != null)
+				filtro += " AND cpf = '" + cpf +"'";
+			if(cnpj != null)
+				filtro += " AND cnpj = " + cnpj + "'";
+			
+			this.factory = Persistence.createEntityManagerFactory	(	
+																		"estudioFotografico", 
+																		new ControladorBancodeDados().getConfigBD()
+																	);
+			this.manager = this.factory.createEntityManager();
+			
+			String qr = "Select c FROM Clientes c WHERE 1=1 " + filtro + " ORDER BY c.codigo";
+
+			//Obtendo o Codigo do item
+			Query query = this.manager.createQuery(qr);
+			this.clientes = query.getResultList();
+			return this.clientes;
+		}
+		catch (Exception e)
+		{
+			return null;
+		}
+	}
+	
 	private EntityManagerFactory			factory;
     private EntityManager					manager;
 	

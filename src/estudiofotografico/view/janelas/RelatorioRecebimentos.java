@@ -19,13 +19,16 @@
  */
 package estudiofotografico.view.janelas;
 
+import estudiofotografico.control.ControladorEventos;
 import estudiofotografico.control.ControladorRelatorios;
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Toolkit;
 import java.awt.event.ContainerEvent;
 import java.awt.event.ContainerListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.List;
 
 /**
  *
@@ -40,8 +43,8 @@ public class RelatorioRecebimentos extends javax.swing.JFrame implements KeyList
         initComponents();
         addKeyAndContainerListenerRecursively(this);
         this.setLocationRelativeTo(null);
-        radioNenhumRecebimento.setVisible(false);
-        radioNenhumRecebimento.doClick();
+		radioTodosRecebimentos.doClick();
+		this.getTipos();
     }
     
     //BOTAO ESC E ENTER
@@ -108,7 +111,6 @@ public class RelatorioRecebimentos extends javax.swing.JFrame implements KeyList
         radioTodosRecebimentos = new javax.swing.JRadioButton();
         radioVendasQuitadas = new javax.swing.JRadioButton();
         radioVendasPendentes = new javax.swing.JRadioButton();
-        radioNenhumRecebimento = new javax.swing.JRadioButton();
         progresso = new javax.swing.JProgressBar();
         botaoGerarRelatorio = new javax.swing.JButton();
         botaoCancelar = new javax.swing.JButton();
@@ -116,6 +118,7 @@ public class RelatorioRecebimentos extends javax.swing.JFrame implements KeyList
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Tipos de Eventos");
         setBounds(new java.awt.Rectangle(250, 230, 0, 0));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/estudiofotografico/view/img/camera-photo-5.png")));
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(95, 133, 169), null), "Filtros", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
@@ -127,13 +130,15 @@ public class RelatorioRecebimentos extends javax.swing.JFrame implements KeyList
 
         labelRecebimentos.setText("Recebimentos");
 
+        grupoRecebimentos.add(radioTodosRecebimentos);
+        radioTodosRecebimentos.setSelected(true);
         radioTodosRecebimentos.setText("Todos os recebimentos");
 
+        grupoRecebimentos.add(radioVendasQuitadas);
         radioVendasQuitadas.setText("Vendas Quitadas");
 
+        grupoRecebimentos.add(radioVendasPendentes);
         radioVendasPendentes.setText("Vendas Pendentes");
-
-        radioNenhumRecebimento.setSelected(true);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -152,16 +157,14 @@ public class RelatorioRecebimentos extends javax.swing.JFrame implements KeyList
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(radioVendasPendentes)
                             .addComponent(radioVendasQuitadas)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addComponent(radioTodosRecebimentos)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(radioNenhumRecebimento))
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(radioTodosRecebimentos)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                    .addComponent(textoCliente)
+                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(comboTipoEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(textoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(botaoPesquisarCliente))
-                                .addComponent(comboTipoEvento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(botaoPesquisarCliente))))))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -177,16 +180,13 @@ public class RelatorioRecebimentos extends javax.swing.JFrame implements KeyList
                     .addComponent(labelTipoEvento)
                     .addComponent(comboTipoEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelRecebimentos)
-                            .addComponent(radioTodosRecebimentos))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(radioVendasQuitadas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(radioVendasPendentes))
-                    .addComponent(radioNenhumRecebimento))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelRecebimentos)
+                    .addComponent(radioTodosRecebimentos))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(radioVendasQuitadas)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(radioVendasPendentes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(progresso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -259,7 +259,11 @@ public class RelatorioRecebimentos extends javax.swing.JFrame implements KeyList
 		progresso.setIndeterminate(true);
 		
 		ControladorRelatorios relatorio	= new ControladorRelatorios();
-		relatorio.parametros.put("Cliente", textoCliente.getText());
+		
+		if(textoCliente.getText().equals(""))
+			relatorio.parametros.put("Cliente", textoCliente.getText());
+		else
+			relatorio.parametros.put("Cliente", "");
 		
 		if(comboTipoEvento.getSelectedIndex() == -1)
 			relatorio.parametros.put("Evento", "");
@@ -277,7 +281,7 @@ public class RelatorioRecebimentos extends javax.swing.JFrame implements KeyList
 			relatorio.parametros.put("Quitado1", false);
 			relatorio.parametros.put("Quitado2", false);
 		}
-		if(radioTodosRecebimentos.isSelected() || radioNenhumRecebimento.isSelected())
+		if(radioTodosRecebimentos.isSelected())
 		{
 			relatorio.parametros.put("Quitado1", true);
 			relatorio.parametros.put("Quitado2", false);
@@ -293,6 +297,16 @@ public class RelatorioRecebimentos extends javax.swing.JFrame implements KeyList
 		this.dispose();
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
+	private void getTipos()
+	{
+		List<String> tipos = new ControladorEventos().getTiposEventos();
+		for(String tipo : tipos)
+		{
+			comboTipoEvento.addItem(tipo);
+		}
+		comboTipoEvento.setSelectedIndex(-1);
+	}
+	
     /**
      * @param args the command line arguments
      */
@@ -345,7 +359,6 @@ public class RelatorioRecebimentos extends javax.swing.JFrame implements KeyList
     private javax.swing.JLabel labelRecebimentos;
     private javax.swing.JLabel labelTipoEvento;
     private javax.swing.JProgressBar progresso;
-    private javax.swing.JRadioButton radioNenhumRecebimento;
     private javax.swing.JRadioButton radioTodosRecebimentos;
     private javax.swing.JRadioButton radioVendasPendentes;
     private javax.swing.JRadioButton radioVendasQuitadas;

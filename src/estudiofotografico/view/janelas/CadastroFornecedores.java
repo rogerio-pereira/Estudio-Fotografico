@@ -27,6 +27,7 @@ import estudiofotografico.model.TelefonesFornecedores;
 import estudiofotografico.view.erros.ErroCampoEmBranco;
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Toolkit;
 import java.awt.event.ContainerEvent;
 import java.awt.event.ContainerListener;
 import java.awt.event.KeyEvent;
@@ -512,6 +513,7 @@ public class CadastroFornecedores extends javax.swing.JFrame implements KeyListe
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro Fornecedores");
         setBounds(new java.awt.Rectangle(250, 0, 0, 0));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/estudiofotografico/view/img/camera-photo-5.png")));
 
         botaoSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/estudiofotografico/view/img/accept.png"))); // NOI18N
         botaoSalvar.setText("Salvar");

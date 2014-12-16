@@ -135,6 +135,7 @@ public class MalaDireta extends javax.swing.JFrame implements KeyListener, Conta
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Mala Direta");
         setBounds(new java.awt.Rectangle(250, 230, 0, 0));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/estudiofotografico/view/img/camera-photo-5.png")));
 
         painelPesquisa.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(95, 133, 169), null), "Listar Endereços de E-mails", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
 

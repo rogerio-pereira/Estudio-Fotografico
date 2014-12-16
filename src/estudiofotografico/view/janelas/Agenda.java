@@ -19,12 +19,20 @@
  */
 package estudiofotografico.view.janelas;
 
+import estudiofotografico.control.ControladorClientes;
+import estudiofotografico.control.ControladorEventos;
+import estudiofotografico.control.ControladorFornecedores;
+import estudiofotografico.model.Clientes;
+import estudiofotografico.model.Fornecedores;
+import estudiofotografico.model.LocaisEventos;
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Toolkit;
 import java.awt.event.ContainerEvent;
 import java.awt.event.ContainerListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -45,8 +53,8 @@ public class Agenda extends javax.swing.JFrame implements KeyListener, Container
         tabelaContatos.getColumnModel().getColumn(0).setPreferredWidth(200);
         tabelaContatos.getColumnModel().getColumn(1).setPreferredWidth(150);
         tabelaContatos.getColumnModel().getColumn(2).setPreferredWidth(130);
-        tabelaContatos.getColumnModel().getColumn(3).setPreferredWidth(130);
-        tabelaContatos.getColumnModel().getColumn(4).setPreferredWidth(400);
+        tabelaContatos.getColumnModel().getColumn(3).setPreferredWidth(200);
+        tabelaContatos.getColumnModel().getColumn(4).setPreferredWidth(100);
     }
     
     //BOTAO ESC E ENTER
@@ -124,6 +132,7 @@ public class Agenda extends javax.swing.JFrame implements KeyListener, Container
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Agenda");
         setBounds(new java.awt.Rectangle(250, 230, 0, 0));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/estudiofotografico/view/img/camera-photo-5.png")));
 
         painelPesquisa.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(95, 133, 169), null), "Pesquisa", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
 
@@ -308,7 +317,7 @@ public class Agenda extends javax.swing.JFrame implements KeyListener, Container
             },
             new String []
             {
-                "Nome", "CPF/CNPJ", "Telefone 1", "Telefone 2", "E-Mail"
+                "Nome", "CPF/CNPJ", "Telefone", "E-mail", "Origem"
             }
         )
         {
@@ -404,7 +413,136 @@ public class Agenda extends javax.swing.JFrame implements KeyListener, Container
 
     private void botaoPesquisarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_botaoPesquisarActionPerformed
     {//GEN-HEADEREND:event_botaoPesquisarActionPerformed
-        // TODO add your handling code here:
+		List<Clientes>		clientes		= new ControladorClientes().getClientesAgenda(getNome(), getPessoa(), getCPF(), getCNPJ());
+		List<Fornecedores>	fornecedores	= new ControladorFornecedores().getFornecedorAgenda(getNome(), getPessoa(), getCPF(), getCNPJ());
+		List<LocaisEventos>	locaisEventos	= new ControladorEventos().getLocaisEventoAgenda(getNome());
+		
+		while(tabelaContatos.getRowCount() > 0)
+		{
+			DefaultTableModel	modelo		= (DefaultTableModel) tabelaContatos.getModel();
+			modelo.removeRow(0);
+		}
+		
+		for(Clientes cliente : clientes)
+		{
+			DefaultTableModel	modelo		= (DefaultTableModel) tabelaContatos.getModel();
+			String				documento	= "";
+			String				telefone	= "";
+			String				email		= "";
+			
+			try
+			{
+				telefone = cliente.getTelefones().iterator().next().getTelefone();
+			}
+			catch (Exception e)
+			{
+			}
+			
+			try
+			{
+				email = cliente.getEmails().iterator().next().getEmail();
+			}
+			catch (Exception e)
+			{
+			}
+			
+			if	(
+					cliente.getCnpj() == null	||
+					cliente.getCnpj().equals("")	||
+					cliente.getCnpj().equals("  .   .   /    -  ")
+				)
+				documento = cliente.getCpf();
+			else if	(
+						cliente.getCpf().equals(null)	||
+						cliente.getCpf().equals("")	||
+						cliente.getCpf().equals("   .   .   -  ")
+					)
+				documento = cliente.getCnpj();
+		
+			modelo.addRow(new String[]	{
+											cliente.getNome(), 
+											documento,
+											telefone,
+											email,
+											"Cliente"
+										});
+		}
+		
+		for(Fornecedores fornecedor : fornecedores)
+		{
+			DefaultTableModel		modelo		= (DefaultTableModel) tabelaContatos.getModel();
+			String					documento	= "";
+			String					telefone	= "";
+			String					email		= "";
+			
+			try
+			{
+				telefone = fornecedor.getTelefones().iterator().next().getTelefone();
+			}
+			catch (Exception e)
+			{
+			}
+			
+			try
+			{
+				email = fornecedor.getEmails().iterator().next().getEmail();
+			}
+			catch (Exception e)
+			{
+			}
+			
+			if	(
+					fornecedor.getCnpj() == null	||
+					fornecedor.getCnpj().equals("")	||
+					fornecedor.getCnpj().equals("  .   .   /    -  ")
+				)
+				documento = fornecedor.getCpf();
+			else if	(
+						fornecedor.getCpf().equals(null)	||
+						fornecedor.getCpf().equals("")	||
+						fornecedor.getCpf().equals("   .   .   -  ")
+					)
+				documento = fornecedor.getCnpj();
+		
+			modelo.addRow(new String[]	{
+											fornecedor.getNome(), 
+											documento,
+											telefone,
+											email,
+											"Fornecedor"
+										});
+		}
+		
+		for(LocaisEventos local : locaisEventos)
+		{
+			DefaultTableModel			modelo		= (DefaultTableModel) tabelaContatos.getModel();
+			String						telefone	= "";
+			String						email		= "";
+			
+			try
+			{
+				telefone = local.getTelefones().iterator().next().getTelefone();
+			}
+			catch (Exception e)
+			{
+			}
+			
+			try
+			{
+				email = local.getEmails().iterator().next().getEmail();
+			}
+			catch (Exception e)
+			{
+			}
+		
+			modelo.addRow(new String[]	{
+											local.getNome(), 
+											"",
+											telefone,
+											email,
+											"Local de Evento"
+										});
+		}
     }//GEN-LAST:event_botaoPesquisarActionPerformed
 
     private void botaoLimparActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_botaoLimparActionPerformed
@@ -424,6 +562,42 @@ public class Agenda extends javax.swing.JFrame implements KeyListener, Container
 		this.dispose();
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
+	private String getNome()
+	{
+		if(!this.textoNome.getText().equals(""))
+			return this.textoNome.getText();
+		
+		return null;					
+	}
+	
+	private String getPessoa()
+	{
+		if(radioNenhumaPessoa.isSelected())
+			return null;
+		else if(radioPessoaFisica.isSelected())
+			return "1";
+		else if(radioPessoaJuridica.isSelected())
+			return "0";
+		
+		return null;
+	}
+	
+	private String getCPF()
+	{
+		if(!this.textoCPF.getText().equals("   .   .   -  "))
+			return this.textoCPF.getText();
+		
+		return null;
+	}
+	
+	private String getCNPJ()
+	{
+		if(!this.textoCNPJ.getText().equals("  .   .   /    -  "))
+			return this.textoCNPJ.getText();
+		
+		return null;
+	}
+	
     /**
      * @param args the command line arguments
      */

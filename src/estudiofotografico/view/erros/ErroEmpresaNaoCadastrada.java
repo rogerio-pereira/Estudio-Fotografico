@@ -22,6 +22,7 @@
 package estudiofotografico.view.erros;
 
 
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.AbstractAction;
@@ -92,6 +93,7 @@ public class ErroEmpresaNaoCadastrada extends javax.swing.JDialog
         jLabel3 = new javax.swing.JLabel();
 
         setTitle("Empresa não Cadastrada!");
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/estudiofotografico/view/img/camera-photo-5.png")));
         addWindowListener(new java.awt.event.WindowAdapter()
         {
             public void windowClosing(java.awt.event.WindowEvent evt)

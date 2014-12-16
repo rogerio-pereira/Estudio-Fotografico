@@ -11,6 +11,9 @@
     <Property name="bounds" type="java.awt.Rectangle" editor="org.netbeans.beaninfo.editors.RectangleEditor">
       <Rectangle value="[250, 230, 0, 0]"/>
     </Property>
+    <Property name="iconImage" type="java.awt.Image" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+      <Connection code="Toolkit.getDefaultToolkit().getImage(getClass().getResource(&quot;/estudiofotografico/view/img/camera-photo-5.png&quot;))" type="code"/>
+    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -93,18 +96,16 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="radioVendasPendentes" min="-2" max="-2" attributes="0"/>
                               <Component id="radioVendasQuitadas" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="radioTodosRecebimentos" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="radioNenhumRecebimento" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="radioTodosRecebimentos" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Component id="textoCliente" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="comboTipoEvento" alignment="1" min="-2" pref="259" max="-2" attributes="0"/>
+                                          <Component id="textoCliente" min="-2" pref="259" max="-2" attributes="0"/>
+                                      </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="botaoPesquisarCliente" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="comboTipoEvento" alignment="1" min="-2" pref="314" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -128,19 +129,14 @@
                       <Component id="comboTipoEvento" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="labelRecebimentos" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="radioTodosRecebimentos" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="radioVendasQuitadas" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="radioVendasPendentes" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="radioNenhumRecebimento" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="labelRecebimentos" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="radioTodosRecebimentos" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="radioVendasQuitadas" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="radioVendasPendentes" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="progresso" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
@@ -182,22 +178,27 @@
         </Component>
         <Component class="javax.swing.JRadioButton" name="radioTodosRecebimentos">
           <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="grupoRecebimentos"/>
+            </Property>
+            <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Todos os recebimentos"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="radioVendasQuitadas">
           <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="grupoRecebimentos"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Vendas Quitadas"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="radioVendasPendentes">
           <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="grupoRecebimentos"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Vendas Pendentes"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JRadioButton" name="radioNenhumRecebimento">
-          <Properties>
-            <Property name="selected" type="boolean" value="true"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JProgressBar" name="progresso">

@@ -22,6 +22,7 @@ package estudiofotografico.view.erros;
 
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Toolkit;
 import java.awt.event.ContainerEvent;
 import java.awt.event.ContainerListener;
 import java.awt.event.KeyEvent;
@@ -64,6 +65,7 @@ public class SucessoAlterar extends javax.swing.JDialog implements KeyListener, 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Sucesso!");
         setAlwaysOnTop(true);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/estudiofotografico/view/img/camera-photo-5.png")));
         setModal(true);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/estudiofotografico/view/img/accept-grande.png"))); // NOI18N

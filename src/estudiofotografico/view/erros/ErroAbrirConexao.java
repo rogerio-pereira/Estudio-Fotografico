@@ -22,6 +22,7 @@ package estudiofotografico.view.erros;
 
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Toolkit;
 import java.awt.event.ContainerEvent;
 import java.awt.event.ContainerListener;
 import java.awt.event.KeyEvent;
@@ -55,7 +56,8 @@ public class ErroAbrirConexao extends javax.swing.JDialog implements KeyListener
      */
     @SuppressWarnings ("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jLabel1 = new javax.swing.JLabel();
         botaoOK = new javax.swing.JButton();
@@ -63,6 +65,7 @@ public class ErroAbrirConexao extends javax.swing.JDialog implements KeyListener
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Erro!");
         setAlwaysOnTop(true);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/estudiofotografico/view/img/camera-photo-5.png")));
         setModal(true);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/estudiofotografico/view/img/cancel_grande.png"))); // NOI18N
@@ -70,8 +73,10 @@ public class ErroAbrirConexao extends javax.swing.JDialog implements KeyListener
 
         botaoOK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/estudiofotografico/view/img/accept.png"))); // NOI18N
         botaoOK.setText("OK");
-        botaoOK.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botaoOK.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 botaoOKActionPerformed(evt);
             }
         });
@@ -85,7 +90,7 @@ public class ErroAbrirConexao extends javax.swing.JDialog implements KeyListener
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(49, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(botaoOK)
                 .addGap(44, 44, 44))
         );

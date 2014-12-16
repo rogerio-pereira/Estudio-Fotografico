@@ -26,6 +26,7 @@ import estudiofotografico.view.erros.ErroCampoEmBranco;
 import estudiofotografico.view.erros.ErroConfirmacaoSenha;
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Toolkit;
 import java.awt.event.ContainerEvent;
 import java.awt.event.ContainerListener;
 import java.awt.event.KeyEvent;
@@ -215,6 +216,7 @@ public class CadastroUsuario extends javax.swing.JFrame implements KeyListener, 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Usuario");
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/estudiofotografico/view/img/camera-photo-5.png")));
 
         painelCadastro.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(95, 133, 169), null), "Usuarios", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
 

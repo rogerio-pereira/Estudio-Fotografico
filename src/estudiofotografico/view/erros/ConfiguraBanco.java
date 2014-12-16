@@ -21,8 +21,10 @@
 
 package estudiofotografico.view.erros;
 
+import estudiofotografico.view.control.Icone;
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Toolkit;
 import java.awt.event.ContainerEvent;
 import java.awt.event.ContainerListener;
 import java.awt.event.KeyEvent;
@@ -39,6 +41,7 @@ public class ConfiguraBanco extends javax.swing.JFrame implements KeyListener, C
     /** Creates new form ConfiguraBanco */
     public ConfiguraBanco() {
         initComponents();
+		new Icone().setIcon(this);
 
         //Adiciona Listeners de Botões
         addKeyAndContainerListenerRecursively(this);
@@ -63,6 +66,7 @@ public class ConfiguraBanco extends javax.swing.JFrame implements KeyListener, C
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Configuração BD");
         setAlwaysOnTop(true);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/estudiofotografico/view/img/camera-photo-5.png")));
         setResizable(false);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/estudiofotografico/view/img/alert.png"))); // NOI18N
