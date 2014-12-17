@@ -205,17 +205,17 @@ public class ProcuraServico extends javax.swing.JDialog implements KeyListener, 
             },
             new String []
             {
-                "Codigo", "Nome", "Categoria", "Tipo"
+                "", "Codigo", "Nome", "Categoria", "Valor"
             }
         )
         {
             Class[] types = new Class []
             {
-                java.lang.Long.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Boolean.class, java.lang.Long.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean []
             {
-                false, false, false, false
+                true, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex)
@@ -287,8 +287,14 @@ public class ProcuraServico extends javax.swing.JDialog implements KeyListener, 
             }
 			else if(janela.getTitle() == "Vendas")
 			{
-				janelaVendas = (Vendas) this.getParent();
-				janelaVendas.insertServico(Long.parseLong(tabelaServicos.getValueAt(tabelaServicos.getSelectedRow(), 0).toString()));
+				for(int i=0; i<tabelaServicos.getRowCount(); i++)
+				{
+					if(tabelaServicos.getValueAt(i, 0).equals(true))
+					{
+						janelaVendas = (Vendas) this.getParent();
+						janelaVendas.insertServico(Long.parseLong(tabelaServicos.getValueAt(i, 1).toString()));
+					}
+				}
 			}
 
             this.dispose();
@@ -314,14 +320,33 @@ public class ProcuraServico extends javax.swing.JDialog implements KeyListener, 
 	 */
 	private void configuraTabela()
 	{
-		DefaultTableCellRenderer alinhamento = new DefaultTableCellRenderer();
-		alinhamento.setHorizontalAlignment(SwingConstants.LEFT);
-		tabelaServicos.getColumnModel().getColumn(0).setCellRenderer(alinhamento);
+		JFrame janela = (JFrame) this.getParent();
 		
-		tabelaServicos.getColumnModel().getColumn(0).setPreferredWidth(80); 
-		tabelaServicos.getColumnModel().getColumn(1).setPreferredWidth(150); 
-		tabelaServicos.getColumnModel().getColumn(2).setPreferredWidth(100); 
-		tabelaServicos.getColumnModel().getColumn(3).setPreferredWidth(100); 
+		if(janela.getTitle() == "Vendas")
+		{
+			DefaultTableCellRenderer alinhamento = new DefaultTableCellRenderer();
+			alinhamento.setHorizontalAlignment(SwingConstants.LEFT);
+			tabelaServicos.getColumnModel().getColumn(1).setCellRenderer(alinhamento);
+
+			tabelaServicos.getColumnModel().getColumn(0).setPreferredWidth(20); 
+			tabelaServicos.getColumnModel().getColumn(1).setPreferredWidth(80); 
+			tabelaServicos.getColumnModel().getColumn(2).setPreferredWidth(130); 
+			tabelaServicos.getColumnModel().getColumn(3).setPreferredWidth(119); 
+			tabelaServicos.getColumnModel().getColumn(4).setPreferredWidth(80); 
+		}
+		else
+		{
+			DefaultTableCellRenderer alinhamento = new DefaultTableCellRenderer();
+			alinhamento.setHorizontalAlignment(SwingConstants.LEFT);
+			tabelaServicos.getColumnModel().getColumn(1).setCellRenderer(alinhamento);
+
+			tabelaServicos.getColumnModel().getColumn(1).setPreferredWidth(80); 
+			tabelaServicos.getColumnModel().getColumn(2).setPreferredWidth(150); 
+			tabelaServicos.getColumnModel().getColumn(3).setPreferredWidth(119); 
+			tabelaServicos.getColumnModel().getColumn(4).setPreferredWidth(100); 
+			
+			tabelaServicos.getColumnModel().removeColumn( tabelaServicos.getColumnModel().getColumn(0)); 
+		}
 	}
     /*
 	 * Método apagaTabela
@@ -346,6 +371,7 @@ public class ProcuraServico extends javax.swing.JDialog implements KeyListener, 
 		{
 			DefaultTableModel modelo = (DefaultTableModel) this.tabelaServicos.getModel();
 			modelo.addRow(new String[]	{
+											null,
 											servico.getCodigo().toString(),
 											servico.getServico(),
 											servico.getCategoria().getCategoria(),

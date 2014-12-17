@@ -236,17 +236,17 @@ public class ProcuraProduto extends javax.swing.JDialog implements KeyListener, 
             },
             new String []
             {
-                "Codigo", "Nome", "Categoria", "Tipo"
+                "", "Codigo", "Nome", "Categoria", "Tipo"
             }
         )
         {
             Class[] types = new Class []
             {
-                java.lang.Long.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Boolean.class, java.lang.Long.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean []
             {
-                false, false, false, false
+                true, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex)
@@ -319,8 +319,14 @@ public class ProcuraProduto extends javax.swing.JDialog implements KeyListener, 
             }
 			else if(janela.getTitle() == "Vendas")
 			{
-				janelaVendas = (Vendas) this.getParent();
-				janelaVendas.insertProduto(Long.parseLong(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 0).toString()));
+				for(int i=0; i<tabelaProdutos.getRowCount(); i++)
+				{
+					if(tabelaProdutos.getValueAt(i, 0).equals(true))
+					{
+						janelaVendas = (Vendas) this.getParent();
+						janelaVendas.insertProduto(Long.parseLong(tabelaProdutos.getValueAt(i, 1).toString()));
+					}
+				}
 			}
 
             this.dispose();
@@ -353,14 +359,33 @@ public class ProcuraProduto extends javax.swing.JDialog implements KeyListener, 
 	 */
 	private void configuraTabela()
 	{
-		DefaultTableCellRenderer alinhamento = new DefaultTableCellRenderer();
-		alinhamento.setHorizontalAlignment(SwingConstants.LEFT);
-		tabelaProdutos.getColumnModel().getColumn(0).setCellRenderer(alinhamento);
+		JFrame janela = (JFrame) this.getParent();
 		
-		tabelaProdutos.getColumnModel().getColumn(0).setPreferredWidth(80); 
-		tabelaProdutos.getColumnModel().getColumn(1).setPreferredWidth(150); 
-		tabelaProdutos.getColumnModel().getColumn(2).setPreferredWidth(100); 
-		tabelaProdutos.getColumnModel().getColumn(3).setPreferredWidth(100); 
+		if(janela.getTitle() == "Vendas")
+		{
+			DefaultTableCellRenderer alinhamento = new DefaultTableCellRenderer();
+			alinhamento.setHorizontalAlignment(SwingConstants.LEFT);
+			tabelaProdutos.getColumnModel().getColumn(1).setCellRenderer(alinhamento);
+
+			tabelaProdutos.getColumnModel().getColumn(0).setPreferredWidth(20); 
+			tabelaProdutos.getColumnModel().getColumn(1).setPreferredWidth(80); 
+			tabelaProdutos.getColumnModel().getColumn(2).setPreferredWidth(130); 
+			tabelaProdutos.getColumnModel().getColumn(3).setPreferredWidth(100); 
+			tabelaProdutos.getColumnModel().getColumn(4).setPreferredWidth(100); 
+		}
+		else
+		{
+			DefaultTableCellRenderer alinhamento = new DefaultTableCellRenderer();
+			alinhamento.setHorizontalAlignment(SwingConstants.LEFT);
+			tabelaProdutos.getColumnModel().getColumn(1).setCellRenderer(alinhamento);
+
+			tabelaProdutos.getColumnModel().getColumn(1).setPreferredWidth(80); 
+			tabelaProdutos.getColumnModel().getColumn(2).setPreferredWidth(150); 
+			tabelaProdutos.getColumnModel().getColumn(3).setPreferredWidth(100); 
+			tabelaProdutos.getColumnModel().getColumn(4).setPreferredWidth(100); 
+			
+			tabelaProdutos.getColumnModel().removeColumn( tabelaProdutos.getColumnModel().getColumn(0)); 
+		}
 	}
 	
     /*
@@ -386,6 +411,7 @@ public class ProcuraProduto extends javax.swing.JDialog implements KeyListener, 
 		{
 			DefaultTableModel modelo = (DefaultTableModel) this.tabelaProdutos.getModel();
 			modelo.addRow(new String[]	{
+											null,
 											produto.getCodigo().toString(),
 											produto.getProduto(),
 											produto.getCategoria().getCategoria(),

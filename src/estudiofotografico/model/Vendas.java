@@ -89,6 +89,8 @@ public class Vendas
 	
 	@Column(nullable=false)
 	private Boolean quitado;
+	
+	private int melhorDia;
 
 
 	public Long getCodigo ()
@@ -119,8 +121,7 @@ public class Vendas
 	{
 		String horaString = new String();
 		horaString =	String.format("%02d", hora.getHours())		+ ":" +
-						String.format("%02d", hora.getMinutes())	+ ":" +
-						String.format("%02d", hora.getSeconds());
+						String.format("%02d", hora.getMinutes());
 		
 		return horaString;
 	}
@@ -130,7 +131,7 @@ public class Vendas
 	{
 		try
 		{
-			SimpleDateFormat formatoHora = new SimpleDateFormat("HH:mm:ss");
+			SimpleDateFormat formatoHora = new SimpleDateFormat("HH:mm");
 			this.hora = formatoHora.parse(horaString);
 		}
 		catch (ParseException ex)
@@ -257,6 +258,18 @@ public class Vendas
 	public void setQuitado (Boolean quitado)
 	{
 		this.quitado = quitado;
+	}
+
+
+	public int getMelhorDia ()
+	{
+		return melhorDia;
+	}
+
+
+	public void setMelhorDia (int melhorDia)
+	{
+		this.melhorDia = melhorDia;
 	}
 	
 	

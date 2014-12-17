@@ -78,7 +78,7 @@ public class Vendas extends javax.swing.JFrame implements KeyListener, Container
 		addKeyAndContainerListenerRecursively(this);
 		this.setLocationRelativeTo(null);
 		this.textoCodigo.setText("** NOVO **");
-		labelNomeUsuario.setText(estudio.user.getNome());
+		//labelNomeUsuario.setText(estudio.user.getNome());
 		this.configuraTabelas();
 		//Adiciona Listener nas tabelas
 		this.setListernerTabelas();
@@ -256,7 +256,11 @@ public class Vendas extends javax.swing.JFrame implements KeyListener, Container
         painelTabelaRecebimentos = new javax.swing.JScrollPane();
         tabelaRecebimentos = new javax.swing.JTable();
         labelParcelas = new javax.swing.JLabel();
-        textoParcelas = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        textoMelhorDia = new javax.swing.JFormattedTextField();
+        jLabel2 = new javax.swing.JLabel();
+        textoEntrada = new formattedFields.jTextMoeda();
+        textoParcelas = new javax.swing.JFormattedTextField();
         labelUsuarioAtivo = new javax.swing.JLabel();
         labelNomeUsuario = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -798,20 +802,13 @@ public class Vendas extends javax.swing.JFrame implements KeyListener, Container
 
         labelParcelas.setText("Parcelas");
 
-        textoParcelas.addFocusListener(new java.awt.event.FocusAdapter()
-        {
-            public void focusLost(java.awt.event.FocusEvent evt)
-            {
-                textoParcelasFocusLost(evt);
-            }
-        });
-        textoParcelas.addKeyListener(new java.awt.event.KeyAdapter()
-        {
-            public void keyTyped(java.awt.event.KeyEvent evt)
-            {
-                textoParcelasKeyTyped(evt);
-            }
-        });
+        jLabel1.setText("Melhor Dia");
+
+        textoMelhorDia.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+
+        jLabel2.setText("Entrada");
+
+        textoParcelas.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
         javax.swing.GroupLayout painelInternoRecebimentosLayout = new javax.swing.GroupLayout(painelInternoRecebimentos);
         painelInternoRecebimentos.setLayout(painelInternoRecebimentosLayout);
@@ -822,14 +819,25 @@ public class Vendas extends javax.swing.JFrame implements KeyListener, Container
                 .addGroup(painelInternoRecebimentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(painelTabelaRecebimentos, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
                     .addGroup(painelInternoRecebimentosLayout.createSequentialGroup()
-                        .addComponent(botaoRecebimentosInserir, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(166, 166, 166)
-                        .addComponent(botaoRecebimentosRemoverTodos, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE))
-                    .addGroup(painelInternoRecebimentosLayout.createSequentialGroup()
-                        .addComponent(labelParcelas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textoParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGroup(painelInternoRecebimentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(painelInternoRecebimentosLayout.createSequentialGroup()
+                                .addComponent(botaoRecebimentosInserir, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(166, 166, 166))
+                            .addGroup(painelInternoRecebimentosLayout.createSequentialGroup()
+                                .addComponent(labelParcelas)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(textoParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(textoMelhorDia, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(44, 44, 44)))
+                        .addGroup(painelInternoRecebimentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(painelInternoRecebimentosLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(textoEntrada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(botaoRecebimentosRemoverTodos, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         painelInternoRecebimentosLayout.setVerticalGroup(
@@ -838,6 +846,10 @@ public class Vendas extends javax.swing.JFrame implements KeyListener, Container
                 .addContainerGap()
                 .addGroup(painelInternoRecebimentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelParcelas)
+                    .addComponent(jLabel1)
+                    .addComponent(textoMelhorDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(textoEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textoParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(painelInternoRecebimentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1300,6 +1312,10 @@ private void botaoServicosCadastrarActionPerformed(java.awt.event.ActionEvent ev
 				pagamentos.add(pagamento);
 			}
 			this.controlBD.vendas.setPagamentos(pagamentos);
+			if(!textoMelhorDia.getText().equals(""))
+				this.controlBD.vendas.setMelhorDia(Integer.parseInt(textoMelhorDia.getText()));
+			else
+				this.controlBD.vendas.setMelhorDia(-1);
 			
 			//Definido o quitado
 			if(textoValorReceber.getValue() == 0)
@@ -1352,6 +1368,34 @@ private void botaoServicosCadastrarActionPerformed(java.awt.event.ActionEvent ev
 		Double				valorPago		= 0.0;
 		int					parcelasPagas	= 0;
 		
+		if(!textoMelhorDia.getText().equals(""))
+		{
+			Integer diaAtual;
+			
+			Calendar c	= Calendar.getInstance();
+			diaAtual	= c.get(Calendar.DAY_OF_MONTH);
+			
+			c.set(Calendar.DAY_OF_MONTH, Integer.parseInt(textoMelhorDia.getText()));
+			
+			//Se o dia atual for maior do que o dia da parcela, aumenta 1 mes
+			if(diaAtual > Integer.parseInt(textoMelhorDia.getText()))
+				c.set(Calendar.MONTH, c.get(Calendar.MONTH)+1);
+			
+			data		=	c.getTime();
+		}
+		
+		//Entrada
+		if(textoEntrada.getValue() != 0.0)
+		{
+			this.adicionaLinhaTabela(tabelaRecebimentos);
+
+			tabelaRecebimentos.setValueAt(dataFormatada.format(new Date(System.currentTimeMillis())), this.tabelaRecebimentos.getRowCount()-1, 0);
+			tabelaRecebimentos.setValueAt("R$ "+fmt.format(textoEntrada.getValue()), this.tabelaRecebimentos.getRowCount()-1, 1);
+			tabelaRecebimentos.setValueAt(true, this.tabelaRecebimentos.getRowCount()-1, 2);
+			tabelaRecebimentos.setValueAt("R$ "+fmt.format(textoEntrada.getValue()), this.tabelaRecebimentos.getRowCount()-1, 3);
+			tabelaRecebimentos.setValueAt("Entrada", this.tabelaRecebimentos.getRowCount()-1, 5);
+		}
+		
 		apagaTabela(tabelaRecebimentos);
 		
 		try
@@ -1391,6 +1435,15 @@ private void botaoServicosCadastrarActionPerformed(java.awt.event.ActionEvent ev
 					//Insere as parcelas na tabela
 					for(int i=0; i<Integer.parseInt(textoParcelas.getText())-parcelasPagas; i++)
 					{
+						//Se tiver alguma coisa no campo melhor dia
+						if(!textoMelhorDia.getText().equals(""))
+						{
+							Calendar c = Calendar.getInstance();
+							c.setTime(data);
+							c.set(Calendar.DAY_OF_MONTH, Integer.parseInt(textoMelhorDia.getText()));
+							data = c.getTime();
+						}
+						
 						this.adicionaLinhaTabela(tabelaRecebimentos);
 
 						tabelaRecebimentos.setValueAt(dataFormatada.format(data), this.tabelaRecebimentos.getRowCount()-1, 0);
@@ -1457,29 +1510,6 @@ private void botaoServicosCadastrarActionPerformed(java.awt.event.ActionEvent ev
 		this.calculaValorDesconto();
     }//GEN-LAST:event_textoPorcentagemDescontoFocusLost
 
-    private void textoParcelasKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_textoParcelasKeyTyped
-    {//GEN-HEADEREND:event_textoParcelasKeyTyped
-		int t = textoParcelas.getText().length();
-		if(t == 2)
-			 evt.setKeyChar((char) KeyEvent.VK_CLEAR);
-    }//GEN-LAST:event_textoParcelasKeyTyped
-
-    private void textoParcelasFocusLost(java.awt.event.FocusEvent evt)//GEN-FIRST:event_textoParcelasFocusLost
-    {//GEN-HEADEREND:event_textoParcelasFocusLost
-		if(this.textoParcelas.getText().length() == 1)
-			this.textoParcelas.setText("0" + this.textoParcelas.getText());
-			
-		try
-		{
-			int a = Integer.parseInt(this.textoParcelas.getText());
-		}
-		catch (Exception e)
-		{
-			this.textoParcelas.setText("");
-			this.textoParcelas.requestFocus();
-		}
-    }//GEN-LAST:event_textoParcelasFocusLost
-
     private void botaoPesquisarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_botaoPesquisarActionPerformed
     {//GEN-HEADEREND:event_botaoPesquisarActionPerformed
 		janelaProcuraVendas = new ProcuraVendas();
@@ -1532,8 +1562,8 @@ private void botaoServicosCadastrarActionPerformed(java.awt.event.ActionEvent ev
 					{
 						if
 						(
-							!(tabelaProdutos.getValueAt(tabelaProdutos.getRowCount()-1, 2).toString().isEmpty()) &&
-							!(tabelaProdutos.getValueAt(tabelaProdutos.getRowCount()-1, 3).toString().isEmpty()) &&
+							!(tabelaProdutos.getValueAt(tabelaProdutos.getRowCount()-1, 2).toString().isEmpty()) ||
+							!(tabelaProdutos.getValueAt(tabelaProdutos.getRowCount()-1, 3).toString().isEmpty()) ||
 							!(tabelaProdutos.getValueAt(tabelaProdutos.getRowCount()-1, 4).toString().isEmpty()) 
 						)	
 						{	
@@ -1577,7 +1607,7 @@ private void botaoServicosCadastrarActionPerformed(java.awt.event.ActionEvent ev
 					{
 						if
 						(
-							!(tabelaServicos.getValueAt(tabelaServicos.getRowCount()-1, 2).toString().isEmpty()) &&
+							!(tabelaServicos.getValueAt(tabelaServicos.getRowCount()-1, 2).toString().isEmpty()) ||
 							!(tabelaServicos.getValueAt(tabelaServicos.getRowCount()-1, 3).toString().isEmpty()) 
 						)
 						{
@@ -1730,13 +1760,15 @@ private void botaoServicosCadastrarActionPerformed(java.awt.event.ActionEvent ev
 		this.textoObs.setText(null);
 		this.apagaTabela(this.tabelaProdutos);
 		this.apagaTabela(this.tabelaServicos);
-		this.apagaTabela(this.tabelaRecebimentos);
 		this.textoParcelas.setText("");
+		this.apagaTabela(this.tabelaRecebimentos);
 		this.textoValorTotal.setText("");
 		this.textoValorDesconto.setText("");
 		this.textoPorcentagemDesconto.setText("");
 		this.textoValorPago.setText("");
 		this.textoValorReceber.setText("");
+		this.textoMelhorDia.setText("");
+		this.textoEntrada.setText("");
 	}
 	
 	/*
@@ -2111,6 +2143,9 @@ private void botaoServicosCadastrarActionPerformed(java.awt.event.ActionEvent ev
 				this.tabelaRecebimentos.setValueAt("Outros", this.tabelaRecebimentos.getRowCount()-1, 4);
 		}
 		
+		if(this.venda.getMelhorDia() != -1)
+			textoMelhorDia.setText(String.valueOf(this.venda.getMelhorDia()));
+		
 		this.textoValorDesconto.setText(this.venda.getDesconto());
 		this.textoPorcentagemDesconto.setText(this.venda.getPorcentagemDesconto().toString()+" %");
 		this.calculaValorReceber();
@@ -2158,6 +2193,8 @@ private void botaoServicosCadastrarActionPerformed(java.awt.event.ActionEvent ev
 		this.textoPorcentagemDesconto.setEnabled(habilita);
 		this.textoValorPago.setEnabled(habilita);
 		this.textoValorReceber.setEnabled(habilita);
+		this.textoMelhorDia.setEnabled(habilita);
+		this.textoEntrada.setEnabled(habilita);
 	}
 	
     /**
@@ -2223,6 +2260,8 @@ private void botaoServicosCadastrarActionPerformed(java.awt.event.ActionEvent ev
     private javax.swing.JButton botaoServicosRemover;
     private javax.swing.JCheckBox checkPago;
     private javax.swing.JComboBox comboPagamento;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labelCliente;
     private javax.swing.JLabel labelCodigo;
@@ -2259,10 +2298,12 @@ private void botaoServicosCadastrarActionPerformed(java.awt.event.ActionEvent ev
     private javax.swing.JTextField textoCliente;
     private javax.swing.JTextField textoCodigo;
     private com.toedter.calendar.JDateChooser textoData;
+    private formattedFields.jTextMoeda textoEntrada;
     private formattedFields.JTextHora textoHora;
     private javax.swing.JTextField textoLocalEvento;
+    private javax.swing.JFormattedTextField textoMelhorDia;
     private javax.swing.JTextArea textoObs;
-    private javax.swing.JTextField textoParcelas;
+    private javax.swing.JFormattedTextField textoParcelas;
     private javax.swing.JTextField textoPorcentagemDesconto;
     private javax.swing.JTextField textoTipoEvento;
     private formattedFields.jTextMoeda textoValorDesconto;
