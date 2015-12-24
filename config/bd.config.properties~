@@ -2,7 +2,7 @@
 # Modificar somente os valores que est\u00e3o depois do igual
 show_sql	=	false
 user		=	root
-password	=	bospe43bo
+password	=	
 server		=	localhost
 port		=	3306
 database	=	estudiofotografico
